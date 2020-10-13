@@ -26,6 +26,7 @@ if (isset($_POST["login"])) {
         echo "<br>Invalid email<br>";
     }
     if ($isValid) {
+        require_once(__DIR__."/../lib/db.php");
         $db = getDB();
         if (isset($db)) {
             $stmt = $db->prepare("SELECT id, email, username, password from Users WHERE email = :email LIMIT 1");
@@ -38,7 +39,7 @@ if (isset($_POST["login"])) {
                 echo "uh oh something went wrong: " . var_export($e, true);
             }
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-            echo "Result ";
+            echo "\nResult: ";
             echo $result;
             if ($result && isset($result["password"])) {
                 $password_hash_from_db = $result["password"];
