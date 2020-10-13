@@ -17,7 +17,7 @@ if (isset($_POST["saved"])) {
     if (get_email() != $_POST["email"]) {
         //TODO we'll need to check if the email is available
         $email = $_POST["email"];
-        $stmt = $db->prepare("SELECT COUNT(1) as InUse from Users where email = :email");
+        $stmt = $db->prepare("SELECT COUNT(1) as InUse from BankUsers where email = :email");
         $stmt->execute([":email" => $email]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $inUse = 1;//default it to a failure scenario
@@ -41,7 +41,7 @@ if (isset($_POST["saved"])) {
     $newUsername = get_username();
     if (get_username() != $_POST["username"]) {
         $username = $_POST["username"];
-        $stmt = $db->prepare("SELECT COUNT(1) as InUse from Users where username = :username");
+        $stmt = $db->prepare("SELECT COUNT(1) as InUse from BankUsers where username = :username");
         $stmt->execute([":username" => $username]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         $inUse = 1;//default it to a failure scenario
@@ -63,7 +63,7 @@ if (isset($_POST["saved"])) {
         }
     }
     if ($isValid) {
-        $stmt = $db->prepare("UPDATE Users set email = :email, username= :username where id = :id");
+        $stmt = $db->prepare("UPDATE BankUsers set email = :email, username= :username where id = :id");
         $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
         if ($r) {
             echo "Updated profile";
@@ -89,7 +89,7 @@ if (isset($_POST["saved"])) {
             }
         }
 //fetch/select fresh data in case anything changed
-        $stmt = $db->prepare("SELECT email, username from Users WHERE id = :id LIMIT 1");
+        $stmt = $db->prepare("SELECT email, username from BankUsers WHERE id = :id LIMIT 1");
         $stmt->execute([":id" => get_user_id()]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($result) {
