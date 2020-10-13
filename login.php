@@ -38,6 +38,7 @@ if (isset($_POST["login"])) {
                 echo "uh oh something went wrong: " . var_export($e, true);
             }
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            echo $result;
             if ($result && isset($result["password"])) {
                 $password_hash_from_db = $result["password"];
                 if (password_verify($password, $password_hash_from_db)) {
