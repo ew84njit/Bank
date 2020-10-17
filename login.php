@@ -58,7 +58,7 @@ if (isset($_POST["login"])) {
                         $_SESSION["user"]["roles"] = [];
                     }
                     //on successful login let's serve-side redirect the user to the home page.
-                    header("Location: home.php");
+                    //header("Location: home.php");
                 }
                 else {
                     echo "<br>Invalid password, get out!<br>";
