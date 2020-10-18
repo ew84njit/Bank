@@ -1,0 +1,8 @@
+.navItem{
+    display: inline-block;
+    text-align: center;
+    padding: 14px 16px;
+    margin:auto;
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+}
