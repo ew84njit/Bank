@@ -1,14 +1,15 @@
+<!DOCTYPE html>
+<html>
 <?php
 //we'll be including this on most/all pages so it's a good place to include anything else we want on those pages
 require_once(__DIR__ . "/../lib/helpers.php");
 ?>
-<!DOCTYPE html>
-<html>
 
 <head>
 <link rel = "stylesheet" type="text/css" href = "theme.css" media="all"/>
 </head>
 
+<body>
 <nav class="navbar">
     <ul>
         <li><a class="navItem" href="home.php">Home</a></li>
@@ -22,6 +23,6 @@ require_once(__DIR__ . "/../lib/helpers.php");
         <?php endif; ?>
     </ul>
 </nav>
-
+</body>
 
 </html>
