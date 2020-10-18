@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 require_once(__DIR__ . "/../lib/helpers.php");
 ?>
@@ -6,7 +7,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
 <?php include 'theme.css'; ?>
 </style>
 
-
+<body>
 <div class="navbar">
     <a class="navItem" href="home.php">Home</a>
     <?php if (!is_logged_in()): ?>
@@ -18,5 +19,5 @@ require_once(__DIR__ . "/../lib/helpers.php");
         <a class="navItem" href="logout.php">aLogout</a>
     <?php endif; ?>
 </div>
-
+</body>
 
