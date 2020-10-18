@@ -9,7 +9,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
 <link rel = "stylesheet" type="text/css" href = "theme.css" media="all"/>
 </head>
 
-<nav>
+<nav class="navbar">
     <ul>
         <li><a class="navItem" href="home.php">Home</a></li>
         <?php if (!is_logged_in()): ?>
