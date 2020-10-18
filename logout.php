@@ -7,5 +7,8 @@ session_destroy();
 
 <?php
 echo '<script>alert("You are logged out")</script>'; 
-header("Location: login.php");
+
+
+
+//header("Location: login.php");
 ?>
