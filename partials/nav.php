@@ -16,7 +16,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
     <?php endif; ?>
     <?php if (is_logged_in()): ?>
         <a class="navItem" href="profile.php">Profile</a>
-        <a class="navItem" href="logout.php">aLogout</a>
+        <a class="navItem" href="logout.php">Logout</a>
     <?php endif; ?>
 </div>
 </body>
