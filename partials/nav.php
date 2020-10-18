@@ -10,7 +10,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
 </head>
 
 <body>
-<nav class="navbar">
+<div class="navbar">
     <ul>
         <li><a class="navItem" href="home.php">Home</a></li>
         <?php if (!is_logged_in()): ?>
@@ -22,7 +22,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
             <li><a class="navItem" href="logout.php">Logout</a></li>
         <?php endif; ?>
     </ul>
-</nav>
+</div>
 </body>
 
 </html>
