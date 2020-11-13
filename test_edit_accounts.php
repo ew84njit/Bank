@@ -61,8 +61,9 @@ if(isset($id)){
 <form method="POST">
 	<label for="accountNum">Account Number</label>
 	<select name="accountNum" id="accountNum">
+		<option value=<?php echo($r["id"]);?>><?php safer_echo($result["account_number"]);?></option>
 		<?php foreach ($result as $r): ?>
-			<option value=<?php echo($r["id"]);?>><?php safer_echo($r["account_number"]);?></option>
+			
 		<?php endforeach; ?>
 	</select>
 
@@ -70,7 +71,7 @@ if(isset($id)){
 	<input type="text" name="account_type" value="<?php echo $result["account_type"];?>" />
 
 	<label>Balance</label>
-	<input type="number" min="0.01" step="0.01" name="bal" value="<?php echo$result["balance"];?>" />
+	<input type="number" min="0.01" step="0.01" name="bal" value="<?php echo $result["balance"];?>" />
 	<input type="submit" name="save" value="Update"/>
 </form>
 
