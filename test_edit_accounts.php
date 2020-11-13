@@ -71,6 +71,7 @@ if(isset($id)){
 
 	<label>Balance</label>
 	<input type="number" min="0.01" step="0.01" name="bal" value="<?php echo$result["balance"];?>" />
+	<input type="submit" name="save" value="Update"/>
 </form>
 
 <?php require(__DIR__ . "/partials/flash.php");
