@@ -26,7 +26,7 @@ else {
 	<label for="src">From: </label>
 	<select name="account_src" id="src">
 		<?php foreach ($results as $r): ?>
-			<option value=<?php $r["account_number"]?>><?php safer_echo($r["account_number"]);?></option>
+			<option value="transaction"><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
 
