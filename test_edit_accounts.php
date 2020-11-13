@@ -27,11 +27,11 @@ if(isset($_POST["save"])){
 		$stmt = $db->prepare("UPDATE Accounts set account_number=:accountNum, accountType=:accountType, balance=:bal, last_updated=:nst where id=:id");
 		//$stmt = $db->prepare("INSERT INTO F20_Eggs (name, state, base_rate, mod_min, mod_max, next_stage_time, user_id) VALUES(:name, :state, :br, :min,:max,:nst,:user)");
 		$r = $stmt->execute([
-			":name"=>$name,
 			":accountNum"=>$accountNum,
 			":accountType"=>$accountType,
 			":bal"=>$bal,
-			":nst"=>$nst
+			":nst"=>$nst,
+			":id"=>$id
 		]);
 		if($r){
 			flash("Updated successfully with id: " . $id);
