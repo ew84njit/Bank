@@ -61,10 +61,7 @@ if(isset($id)){
 <form method="POST">
 	<label for="accountNum">Account Number</label>
 	<select name="accountNum" id="accountNum">
-		<option value=<?php echo($r["id"]);?>><?php safer_echo($result["account_number"]);?></option>
-		<?php foreach ($result as $r): ?>
-			
-		<?php endforeach; ?>
+		<option value=<?php echo($result["id"]);?>><?php echo $result["account_number"];?></option>
 	</select>
 
 	<label>Account Type</label>
