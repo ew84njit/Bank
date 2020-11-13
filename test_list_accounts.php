@@ -8,7 +8,7 @@ if (!has_role("Admin")) {
 ?>
 <?php
 $query = "";
-echo("What what");
+
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
@@ -16,7 +16,7 @@ if (isset($_POST["query"])) {
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-        from Accounts");
+        from Accounts WHERE user_id like :q LIMIT 10");
 
     $r = $stmt->execute([":q" => "%$query%"]);
 
