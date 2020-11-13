@@ -13,8 +13,7 @@ if (!has_role("Admin")) {
 
 	<label>Account Number</label>
 	<input type="text" name="account_number"/>
-	<label>User ID</label>
-	<input type="number" min="1" name="user_id"/>
+
 	<label>Account Type</label>
 	<input type="text" name="account_type"/>
 	<label>Balance</label>

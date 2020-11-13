@@ -14,8 +14,11 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id,name,state,base_rate,mod_min,mod_max,next_stage_time, user_id from F20_Eggs WHERE name like :q LIMIT 10");
+    $stmt = $db->prepare("SELECT account_number, user_id, account_type, opened_date, balance 
+        from Accounts WHERE name like :q LIMIT 10");
+
     $r = $stmt->execute([":q" => "%$query%"]);
+
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -35,19 +38,19 @@ if (isset($_POST["search"]) && !empty($query)) {
                 <div class="list-group-item">
                     <div>
                         <div>Name:</div>
-                        <div><?php safer_echo($r["name"]); ?></div>
+                        <div><?php safer_echo($r["account_number"]); ?></div>
                     </div>
                     <div>
                         <div>State:</div>
-                        <div><?php getState($r["state"]); ?></div>
+                        <div><?php getState($r["user_id"]); ?></div>
                     </div>
                     <div>
                         <div>Next Stage:</div>
-                        <div><?php safer_echo($r["next_stage_time"]); ?></div>
+                        <div><?php safer_echo($r["account_type"]); ?></div>
                     </div>
                     <div>
                         <div>Owner Id:</div>
-                        <div><?php safer_echo($r["user_id"]); ?></div>
+                        <div><?php safer_echo($r["balance"]); ?></div>
                     </div>
                     <div>
                         <a type="button" href="test_edit_egg.php?id=<?php safer_echo($r['id']); ?>">Edit</a>
