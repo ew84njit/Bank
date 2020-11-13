@@ -26,14 +26,14 @@ else {
 	<label for="src">From: </label>
 	<select name="account_src" id="src">
 		<?php foreach ($results as $r): ?>
-			<option value=3><?php safer_echo($r["account_number"]);?></option>
+			<option value=1><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
 
 	<label for="dest">To: </label>
 	<select name="account_dest" id="dest">
 		<?php foreach ($results as $r): ?>
-			<option value=<?php echo($r["account_number"])?>><?php safer_echo($r["account_number"]);?></option>
+			<option value=2><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
 
@@ -52,7 +52,7 @@ else {
 
 <?php
 if(isset($_POST["save"])){
-	//TODO add proper validation/checks
+
 	$act_src = $_POST["account_src"];
 	$act_dest = $_POST["account_dest"];
 	$amount = $_POST["amount"];
