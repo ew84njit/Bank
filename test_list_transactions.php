@@ -55,8 +55,8 @@ if (isset($_POST["search"]) && !empty($query)) {
                     <div><?php safer_echo($r["balance"]); ?></div>
                 </div>
                 <div>
-                    <a type="button" href="test_edit_accounts.php?id=<?php safer_echo($r['id']); ?>">Edit</a>
-                    <a type="button" href="test_view_accounts.php?id=<?php safer_echo($r['id']); ?>">View</a>
+                    <a type="button" href="test_edit_egg.php?id=<?php safer_echo($r['id']); ?>">Edit</a>
+                    <a type="button" href="test_view_egg.php?id=<?php safer_echo($r['id']); ?>">View</a>
                 </div>
             </div>
         <?php endforeach; ?>

@@ -17,8 +17,8 @@ require_once(__DIR__ . "/../lib/helpers.php");
     <?php if (has_role("Admin")): ?>
         <a class="navItem" href="test_create_accounts.php">Create Accounts</a>
         <a class="navItem" href="test_list_accounts.php">View Accounts</a>
-        <a class="navItem" href="create_transactions.php">Make Transactions</a>
-        <a class="navItem" href="list_transactions.php">View Transactions</a>
+        <a class="navItem" href="test_create_transactions.php">Make Transactions</a>
+        <a class="navItem" href="test_list_transactions.php">View Transactions</a>
     <?php endif; ?>
     <?php if (is_logged_in()): ?>
         <a class="navItem" href="profile.php">Profile</a>
