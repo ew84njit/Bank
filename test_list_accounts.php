@@ -8,6 +8,7 @@ if (!has_role("Admin")) {
 ?>
 <?php
 $query = "";
+echo("What what");
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
