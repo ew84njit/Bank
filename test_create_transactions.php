@@ -13,9 +13,7 @@ $results = [];
 $db = getDB();
 $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
 	from Accounts WHERE account_number like :q LIMIT 10");
-
 $r = $stmt->execute([":q" => "%$query%"]);
-
 if ($r) {
 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -28,8 +26,7 @@ else {
 	<label for="src">From: </label>
 	<select name="account_src" id="src">
 		<?php foreach ($results as $r): ?>
-			<option value="1"><?php safer_echo($r["account_number"]); ?></option>
-			
+			<option value=<?php $r["account_number"]?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
 
