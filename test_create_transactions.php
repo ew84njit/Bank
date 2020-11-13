@@ -30,7 +30,7 @@ else {
 		<?php endforeach; ?>
 	</select>
 
-	<label>To: </label>
+	<label for="dest">To: </label>
 	<select name="account_dest" id="dest">
 		<?php foreach ($results as $r): ?>
 			<option value=<?php $r["account_number"]?>><?php safer_echo($r["account_number"]);?></option>
@@ -40,8 +40,12 @@ else {
 	<label>Amount</label>
 	<input type="number" name="amount"/>
 
-	<label>Action</label>
-	<input type="text" name="action"/>
+	<label for="action">Action</label>
+	<select name="action" id="action">
+		<option value="deposit">Deposit</option>
+		<option value="withdraw">Withdraw</option>
+	</select>
+
 
 	<input type="submit" name="save" value="Create"/>
 </form>
@@ -58,14 +62,14 @@ if(isset($_POST["save"])){
 	$db = getDB();
 
 	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, created) 
-		VALUES()");
+		VALUES(:act_src, :act_dest, :amount, :action_type, :created)");
 	
 	$r = $stmt->execute([
-		":accountNum"=>$accountNum,
-		":userID"=>$userID,
-		":accountType"=>$accountType,
-		":openDate"=>$openDate,
-		":bal"=>$bal
+		":act_src"=>$act_src,
+		":act_dest"=>$act_dest,
+		":amount"=>$amount,
+		":action_type"=>$action,
+		":created"=>$createdDate
 	]);
 
 	if($r){
