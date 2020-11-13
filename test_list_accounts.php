@@ -34,7 +34,11 @@ if (isset($_POST["search"]) && !empty($query)) {
 </form>
 
 <?php if (count($results) > 0): ?>
-    <div class="list-group">
+
+<?php else: ?>
+    <p>No results</p>
+<?php endif; ?>
+<div class="list-group">
         <?php foreach ($results as $r): ?>
             <div class="list-group-item">
                 <div>
@@ -60,7 +64,3 @@ if (isset($_POST["search"]) && !empty($query)) {
             </div>
         <?php endforeach; ?>
     </div>
-<?php else: ?>
-    <p>No results</p>
-<?php endif; ?>
-
