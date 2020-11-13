@@ -26,14 +26,14 @@ else {
 	<label for="src">From: </label>
 	<select name="account_src" id="src">
 		<?php foreach ($results as $r): ?>
-			<option value=<?php $r["id"]?>><?php safer_echo($r["account_number"]);?></option>
+			<option value=<?php echo($r["id"]);?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
 
 	<label for="dest">To: </label>
 	<select name="account_dest" id="dest">
 		<?php foreach ($results as $r): ?>
-			<option value=<?php $r["id"]?>><?php safer_echo($r["account_number"]);?></option>
+			<option value=<?php echo($r["id"]);?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
 
