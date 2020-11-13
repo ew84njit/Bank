@@ -31,35 +31,35 @@ if (isset($_POST["search"]) && !empty($query)) {
     <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
     <input type="submit" value="Search" name="search"/>
 </form>
-<div class="results">
-    <?php if (count($results) > 0): ?>
-        <div class="list-group">
-            <?php foreach ($results as $r): ?>
-                <div class="list-group-item">
-                    <div>
-                        <div>Name:</div>
-                        <div><?php safer_echo($r["account_number"]); ?></div>
-                    </div>
-                    <div>
-                        <div>State:</div>
-                        <div><?php getState($r["user_id"]); ?></div>
-                    </div>
-                    <div>
-                        <div>Next Stage:</div>
-                        <div><?php safer_echo($r["account_type"]); ?></div>
-                    </div>
-                    <div>
-                        <div>Owner Id:</div>
-                        <div><?php safer_echo($r["balance"]); ?></div>
-                    </div>
-                    <div>
-                        <a type="button" href="test_edit_egg.php?id=<?php safer_echo($r['id']); ?>">Edit</a>
-                        <a type="button" href="test_view_egg.php?id=<?php safer_echo($r['id']); ?>">View</a>
-                    </div>
+
+<?php if (count($results) > 0): ?>
+    <div class="list-group">
+        <?php foreach ($results as $r): ?>
+            <div class="list-group-item">
+                <div>
+                    <div>Number:</div>
+                    <div><?php safer_echo($r["account_number"]); ?></div>
                 </div>
-            <?php endforeach; ?>
-        </div>
-    <?php else: ?>
-        <p>No results</p>
-    <?php endif; ?>
-</div>
+                <div>
+                    <div>User ID:</div>
+                    <div><?php getState($r["user_id"]); ?></div>
+                </div>
+                <div>
+                    <div>Account Type:</div>
+                    <div><?php safer_echo($r["account_type"]); ?></div>
+                </div>
+                <div>
+                    <div>Balance:</div>
+                    <div><?php safer_echo($r["balance"]); ?></div>
+                </div>
+                <div>
+                    <a type="button" href="test_edit_egg.php?id=<?php safer_echo($r['id']); ?>">Edit</a>
+                    <a type="button" href="test_view_egg.php?id=<?php safer_echo($r['id']); ?>">View</a>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <p>No results</p>
+<?php endif; ?>
+

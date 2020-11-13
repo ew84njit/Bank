@@ -16,6 +16,7 @@ if (!has_role("Admin")) {
 
 	<label>Account Type</label>
 	<input type="text" name="account_type"/>
+	
 	<label>Balance</label>
 	<input type="text" name="bal"/>
 
