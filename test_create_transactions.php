@@ -26,19 +26,19 @@ else {
 	<label for="src">From: </label>
 	<select name="account_src" id="src">
 		<?php foreach ($results as $r): ?>
-			<option value=1><?php safer_echo($r["account_number"]);?></option>
+			<option value=<?php $r["id"]?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
 
 	<label for="dest">To: </label>
 	<select name="account_dest" id="dest">
 		<?php foreach ($results as $r): ?>
-			<option value=2><?php safer_echo($r["account_number"]);?></option>
+			<option value=<?php $r["id"]?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
 
 	<label>Amount</label>
-	<input type="number" name="amount"/>
+	<input type="number" name="amount" min="0.01" step="0.01"/>
 
 	<label for="action">Action</label>
 	<select name="action" id="action">
