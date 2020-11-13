@@ -31,7 +31,11 @@ else {
 	</select>
 
 	<label>To: </label>
-	<input type="number" name="account_dest"/>
+	<select name="account_dest" id="dest">
+		<?php foreach ($results as $r): ?>
+			<option value=<?php $r["account_number"]?>><?php safer_echo($r["account_number"]);?></option>
+		<?php endforeach; ?>
+	</select>
 
 	<label>Amount</label>
 	<input type="number" name="amount"/>
