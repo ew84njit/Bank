@@ -43,7 +43,7 @@ if (isset($_POST["search"]) && !empty($query)) {
                 </div>
                 <div>
                     <div>User ID:</div>
-                    <div><?php getState($r["user_id"]); ?></div>
+                    <div><?php safer_echo($r["user_id"]); ?></div>
                 </div>
                 <div>
                     <div>Account Type:</div>
