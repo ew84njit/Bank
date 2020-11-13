@@ -33,7 +33,7 @@ else {
 	<label for="dest">To: </label>
 	<select name="account_dest" id="dest">
 		<?php foreach ($results as $r): ?>
-			<option value=<?php $r["account_number"]?>><?php safer_echo($r["account_number"]);?></option>
+			<option value=<?php echo($r["account_number"])?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
 
