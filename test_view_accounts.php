@@ -11,7 +11,6 @@ if (!has_role("Admin")) {
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
 }
-echo($id);
 ?>
 <?php
 $result = [];
@@ -19,9 +18,7 @@ if (isset($id)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT account_number, user_id, account_type, balance FROM Accounts where id = :id");
     $r = $stmt->execute([":id" => $id]);
-
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
     if (!$result) {
         $e = $stmt->errorInfo();
         flash($e[2]);

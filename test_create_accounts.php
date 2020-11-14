@@ -37,7 +37,7 @@ if(isset($_POST["save"])){
 
 	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance) 
 		VALUES(:accountNum, :userID, :accountType, :openDate, :bal)");
-	
+
 	$r = $stmt->execute([
 		":accountNum"=>$accountNum,
 		":userID"=>$userID,
