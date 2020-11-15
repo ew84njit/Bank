@@ -21,6 +21,7 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
 <body>
     <div class="container pt-3 my-3">
         <p class="text-justify">Welcome, <?php echo $email; ?></br></p>
+        <button type="button" class="btn btn-dark">Basic</button>
     </div>
 
 
