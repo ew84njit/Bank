@@ -24,7 +24,7 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
         <div class="card">
             <h4 class="card-title">Open Account With Us</h4>
             <p class="card-text">Come take a look at the many banking options you have.</p>
-            <a href="test_create_accounts.php" role="button" class="btn btn-dark btn-lg">Set Up Account</a>
+            <a href="test_create_accounts.php" role="button" class="btn btn-dark">Set Up Account</a>
         </div>
         <a href="test_list.php" role="button" class="btn btn-dark btn-lg">View Your Accounts</a>
     </div>
