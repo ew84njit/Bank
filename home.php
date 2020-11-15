@@ -21,7 +21,7 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
 <body>
     <div class="container pt-3 my-3">
         <p class="text-justify">Welcome, <?php echo $email; ?></br></p>
-        <div class="card">
+        <div class="card col-sm-3">
             <div class="card-body">
                 <h4 class="card-title">Open New Account</h4>
                 <p class="card-text">Come take a look at the many banking options you have.</p>
@@ -29,7 +29,7 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
             </div>
         </div>
 
-        <div class="card">
+        <div class="card col-sm-3">
             <div class="card-body">
                 <h4 class="card-title">View Accounts</h4>
                 <p class="card-text">Come take a look at the many banking options you have.</p>
