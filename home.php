@@ -33,7 +33,7 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
             <div class="card col-sm-4">
                 <div class="card-body">
                     <h4 class="card-title">View Accounts</h4>
-                    <p class="card-text">Come take a look at the many banking options you have.</p>
+                    <p class="card-text">Take a look at your accounts. </p>
                     <a href="test_create_accounts.php" role="button" class="btn btn-dark">View Your Accounts</a>
                 </div>
             </div>
