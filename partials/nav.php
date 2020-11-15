@@ -18,7 +18,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
 
 <body>
     <div class="navbar">
-        <li class="nav-item"><a class="nav-link" href="home.php">Home</a></list>
+        <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
         <?php if (!is_logged_in()): ?>
             <a class="nav-link" href="login.php">Login</a>
             <a class="nav-link" href="register.php">Register</a>
