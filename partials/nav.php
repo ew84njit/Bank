@@ -17,7 +17,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-light bg-dark">
         <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
             <?php if (!is_logged_in()): ?>
