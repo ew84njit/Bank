@@ -23,12 +23,20 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
         <p class="text-justify">Welcome, <?php echo $email; ?></br></p>
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Open Account With Us</h4>
+                <h4 class="card-title">Open New Account</h4>
                 <p class="card-text">Come take a look at the many banking options you have.</p>
                 <a href="test_create_accounts.php" role="button" class="btn btn-dark">Set Up Account</a>
             </div>
         </div>
-        <a href="test_list.php" role="button" class="btn btn-dark btn-lg">View Your Accounts</a>
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">View Accounts</h4>
+                <p class="card-text">Come take a look at the many banking options you have.</p>
+                <a href="test_create_accounts.php" role="button" class="btn btn-dark">View Your Accounts</a>
+            </div>
+        </div>
+
     </div>
 
 
