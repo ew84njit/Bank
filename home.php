@@ -34,7 +34,7 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
                 <div class="card-body">
                     <h4 class="card-title">View Accounts</h4>
                     <p class="card-text">Take a look at your accounts. </p>
-                    <a href="test_create_accounts.php" role="button" class="btn btn-dark">View Your Accounts</a>
+                    <a href="test_view_accounts.php" role="button" class="btn btn-dark">View Your Accounts</a>
                 </div>
             </div>
         </div>
