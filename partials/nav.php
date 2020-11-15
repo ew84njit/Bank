@@ -18,21 +18,23 @@ require_once(__DIR__ . "/../lib/helpers.php");
 
 <body>
     <div class="navbar bg-dark">
-        <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
-        <?php if (!is_logged_in()): ?>
-            <a class="nav-link" href="login.php">Login</a>
-            <a class="nav-link" href="register.php">Register</a>
-        <?php endif; ?>
-        <?php if (has_role("Admin")): ?>
-            <a class="nav-link" href="test_create_accounts.php">Create Accounts</a>
-            <a class="nav-link" href="test_list_accounts.php">View Accounts</a>
-            <a class="nav-link" href="test_create_transactions.php">Make Transactions</a>
-            <a class="nav-link" href="test_list_transactions.php">View Transactions</a>
-        <?php endif; ?>
-        <?php if (is_logged_in()): ?>
-            <a class="nav-link" href="profile.php">Profile</a>
-            <a class="nav-link" href="logout.php">Logout</a>
-        <?php endif; ?>
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="home.php">Home</a></li>
+            <?php if (!is_logged_in()): ?>
+                <a class="nav-link" href="login.php">Login</a>
+                <a class="nav-link" href="register.php">Register</a>
+            <?php endif; ?>
+            <?php if (has_role("Admin")): ?>
+                <a class="nav-link" href="test_create_accounts.php">Create Accounts</a>
+                <a class="nav-link" href="test_list_accounts.php">View Accounts</a>
+                <a class="nav-link" href="test_create_transactions.php">Make Transactions</a>
+                <a class="nav-link" href="test_list_transactions.php">View Transactions</a>
+            <?php endif; ?>
+            <?php if (is_logged_in()): ?>
+                <a class="nav-link" href="profile.php">Profile</a>
+                <a class="nav-link" href="logout.php">Logout</a>
+            <?php endif; ?>
+        </ul>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
