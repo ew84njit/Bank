@@ -19,7 +19,7 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
 </head>
 
 <body>
-    <div class="container">
+    <div class="container pt-3 my-3">
         <p class="text-justify">Welcome, <?php echo $email; ?></br></p>
     </div>
 
