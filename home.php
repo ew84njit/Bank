@@ -62,7 +62,7 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
                 <div class="card-body">
                     <h4 class="card-title">Profile</h4>
                     <p class="card-text">View your profiile.</p>
-                    <a href="#" role="button" class="btn btn-dark">Transfer</a>
+                    <a href="#" role="button" class="btn btn-dark">profile.php</a>
                 </div>
             </div>
         </div>
