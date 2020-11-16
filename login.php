@@ -8,8 +8,8 @@
         <div class="form-group">
             <label for="p1">Password:</label>
             <input class="form-control" type="password" id="p1" name="password" required/>
-            <input type="submit" name="login" value="Login"/>
         </div>
+        <button type="submit" name="login" class="btn btn-dark">Login</button>
     </form>
 </div>
 <?php
