@@ -22,7 +22,7 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
     <div class="container pt-3 my-3">
         <p class="text-justify">Welcome, <?php echo $email; ?></br></p>
         <div class="row col-sm -12">
-            <div class="card col-sm-4">
+            <div class="card col-sm-4 padding-sm">
                 <div class="card-body">
                     <h4 class="card-title">Open</h4>
                     <p class="card-text">Open up a new account.</p>
@@ -30,35 +30,35 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
                 </div>
             </div>
 
-            <div class="card col-sm-4">
+            <div class="card col-sm-4 padding-sm">
                 <div class="card-body">
                     <h4 class="card-title">View</h4>
                     <p class="card-text">Take a look at your accounts. </p>
                     <a href="test_view_accounts.php" role="button" class="btn btn-dark">View Your Accounts</a>
                 </div>
             </div>
-            <div class="card col-sm-4">
+            <div class="card col-sm-4 padding-sm">
                 <div class="card-body">
                     <h4 class="card-title">Deposit</h4>
                     <p class="card-text">Put money into your account.</p>
                     <a href="#" role="button" class="btn btn-dark">Deposit</a>
                 </div>
             </div>
-            <div class="card col-sm-4">
+            <div class="card col-sm-4 padding-sm">
                 <div class="card-body">
                     <h4 class="card-title">Withdraw</h4>
                     <p class="card-text">Withdraw funds from your account.</p>
                     <a href="#" role="button" class="btn btn-dark">Withdraw</a>
                 </div>
             </div>
-            <div class="card col-sm-4">
+            <div class="card col-sm-4 padding-sm">
                 <div class="card-body">
                     <h4 class="card-title">Transfer</h4>
                     <p class="card-text">Move funds between accounts.</p>
                     <a href="#" role="button" class="btn btn-dark">Transfer</a>
                 </div>
             </div>
-            <div class="card col-sm-4">
+            <div class="card col-sm-4 padding-sm">
                 <div class="card-body">
                     <h4 class="card-title">Profile</h4>
                     <p class="card-text">View your profiile.</p>
