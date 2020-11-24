@@ -20,7 +20,7 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
 
 <body>
     <div class="container pt-3 my-3">
-        <?php if (isset($email)): ?>
+        <?php if (is_logged_in()): ?>
             <p class="text-justify ">Welcome, <?php echo $email; ?></br></p>
         <?php else: ?>
             <p> Please Login Or Register </p>
