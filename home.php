@@ -20,8 +20,12 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
 
 <body>
     <div class="container pt-3 my-3">
-        <p class="text-justify">Welcome, <?php echo $email; ?></br></p>
-        <div class="row col-sm -12">
+        <?php if (isset($email)): ?>
+            <p class="text-justify ">Welcome, <?php echo $email; ?></br></p>
+        <?php else: ?>
+            <p> Please Login Or Register </p>
+        <?php endif; ?>
+        <div class="row col-sm-12">
             <div class="card col-sm-4 md-3">
                 <div class="card-body">
                     <h4 class="card-title">Open</h4>
