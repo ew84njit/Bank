@@ -11,16 +11,9 @@ $query = "";
 $results = [];
 
 $db = getDB();
-$query = "SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts";
-if ($result = $mysqli->query($query)) {
-    while ($row = $result->fetch_row()) {
-        printf("%s (%s,%s)\n", $row[0], $row[1], $row[2]);
-    }
-    /* free result set */
-    $result->close();
-}
+$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts");
 
-//$r = $stmt->execute();
+$r = $stmt->execute();
 
 if ($r) {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
