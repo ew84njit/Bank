@@ -11,9 +11,9 @@ $user_id = get_user_id();
 $results = [];
 
 $db = getDB();
-$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts WHERE id = :id");
+$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts WHERE user_id = :user_id");
 
-$r = $stmt->execute([":id" => $user_id]);
+$r = $stmt->execute([":user_id" => $user_id]);
 
 if ($r) {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
