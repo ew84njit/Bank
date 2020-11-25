@@ -7,13 +7,13 @@ if (!has_role("Admin")) {
 }
 ?>
 <?php
-$query = "";
+$user_id = get_user_id();
 $results = [];
 
 $db = getDB();
-$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts");
+$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts WHERE id = :id");
 
-$r = $stmt->execute();
+$r = $stmt->execute([":id" => $user_id]);
 
 if ($r) {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
