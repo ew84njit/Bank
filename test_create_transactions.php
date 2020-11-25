@@ -46,6 +46,8 @@ else {
 		<option value="withdraw">Withdraw</option>
 	</select>
 
+	<label for="memo">Memo</label>
+	<input type="text" name="memo"/>
 
 	<input type="submit" name="save" value="Create"/>
 </form>
