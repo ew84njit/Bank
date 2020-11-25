@@ -52,7 +52,6 @@ else {
 
 <?php
 if(isset($_POST["save"])){
-
 	$act_src = $_POST["account_src"];
 	$act_dest = $_POST["account_dest"];
 	$amount = $_POST["amount"];
@@ -61,6 +60,7 @@ if(isset($_POST["save"])){
 	$createdDate = date('Y-m-d H:i:s');//calc
 	$db = getDB();
 
+	//First insertion
 	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, created) 
 		VALUES(:act_src, :act_dest, :amount, :action_type, :created)");
 	
@@ -73,7 +73,27 @@ if(isset($_POST["save"])){
 	]);
 
 	if($r){
-		flash("Created successfully with id: " . $db->lastInsertId());
+		flash("Created transaction with id: " . $db->lastInsertId());
+	}
+	else{
+		$e = $stmt->errorInfo();
+		flash("Error creating: " . var_export($e, true));
+	}
+
+	//Second insertion
+	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, created) 
+		VALUES(:act_src, :act_dest, :amount, :action_type, :created)");
+	
+	$r = $stmt->execute([
+		":act_src"=>$act_dest,
+		":act_dest"=>$act_src,
+		":amount"=>$amount,
+		":action_type"=>$action,
+		":created"=>$createdDate
+	]);
+
+	if($r){
+		flash("Created transaction with id: " . $db->lastInsertId());
 	}
 	else{
 		$e = $stmt->errorInfo();
