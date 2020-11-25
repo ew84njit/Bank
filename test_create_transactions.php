@@ -29,26 +29,26 @@ else {
 			<option value=<?php echo($r["id"]);?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
-
+	<br></br>
 	<label for="dest">To: </label>
 	<select name="account_dest" id="dest">
 		<?php foreach ($results as $r): ?>
 			<option value=<?php echo($r["id"]);?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
-
+	<br></br>
 	<label>Amount</label>
 	<input type="number" name="amount" min="0.01" step="0.01"/>
-
+	<br></br>
 	<label for="action">Action</label>
 	<select name="action" id="action">
 		<option value="deposit">Deposit</option>
 		<option value="withdraw">Withdraw</option>
 	</select>
-
+	<br></br>
 	<label for="memo">Memo</label>
 	<input type="text" name="memo"/>
-
+	<br></br>
 	<input type="submit" name="save" value="Create"/>
 </form>
 
