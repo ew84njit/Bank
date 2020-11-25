@@ -16,7 +16,7 @@ if (isset($_POST["query"])) {
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-        from Accounts WHERE account_number like :q LIMIT 10");
+        from Accounts LIMIT 10");
 
     $r = $stmt->execute([":q" => "%$query%"]);
 

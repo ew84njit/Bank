@@ -32,7 +32,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
             <?php endif; ?>
             <?php if (is_logged_in()): ?>
                 <li class="nav-item"><a class="nav-link" href="profile.php">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="list_bank_accounts.php">View Accounts</a></li>
+                <li class="nav-item"><a class="nav-link" href="list_bank_accounts.php">Your Accounts</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
             <?php endif; ?>
         </ul>
