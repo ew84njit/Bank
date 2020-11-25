@@ -12,7 +12,9 @@ if (isset($_GET["id"])) {
     $id = $_GET["id"];
 }
 ?>
+
 <?php
+echo($id);
 $result = [];
 if (isset($id)) {
     $db = getDB();
