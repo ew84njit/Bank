@@ -10,23 +10,25 @@ if (!has_role("Admin")) {
 $query = "";
 $results = [];
 
-if (isset($_POST["query"])) {
-    $query = $_POST["query"];
-}
-if (isset($_POST["search"]) && !empty($query)) {
-    $db = getDB();
-    $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-        from Accounts LIMIT 10");
-
-    $r = $stmt->execute([":q" => "%$query%"]);
-
-    if ($r) {
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$db = getDB();
+$query = "SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts";
+if ($result = $mysqli->query($query)) {
+    while ($row = $result->fetch_row()) {
+        printf("%s (%s,%s)\n", $row[0], $row[1], $row[2]);
     }
-    else {
-        flash("There was a problem fetching the results");
-    }
+    /* free result set */
+    $result->close();
 }
+
+//$r = $stmt->execute();
+
+if ($r) {
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+else {
+    flash("There was a problem fetching the results");
+}
+
 ?>
 
 <?php if (count($results) > 0): ?>
