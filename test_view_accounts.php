@@ -12,11 +12,12 @@ echo("get id");
 //we'll put this at the top so both php block have access to it
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
+    echo("in if");
 }
 ?>
 
 <?php
-echo($id);
+
 $result = [];
 if (isset($id)) {
     $db = getDB();
