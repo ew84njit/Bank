@@ -54,12 +54,35 @@ else {
 
 <?php
 if(isset($_POST["save"])){
-	$act_src = $_POST["account_src"];
-	$act_dest = $_POST["account_dest"];
+	$statement = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
+		WHERE account_number = 000000000000");
+
+	$r = $statementt->execute([":user_id" => $user_id]);
+
+	if ($r){
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+	else{
+		flash("There was a problem fetching the results");
+	}
+	
+
+	if($action === "deposit") {
+		$act_src = $r["account_number"];
+		$act_dest = $_POST["account_dest"];
+	}
+	else if($action === "withdraw") {
+		$act_src = $_POST["account_src"];
+		$act_dest = $r["account_number"];
+	} 
+	else {
+		$act_src = $_POST["account_src"];
+		$act_dest = $_POST["account_dest"];
+	}
+
 	$amount = $_POST["amount"];
 	$action = $_POST["action"];
-	$balChange = 0-$amount;
-
+	$balChange = 0 - $amount;
 	$createdDate = date('Y-m-d H:i:s');//calc
 	$db = getDB();
 
