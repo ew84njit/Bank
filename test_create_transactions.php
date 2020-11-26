@@ -66,7 +66,8 @@ if(isset($_POST["save"])){
 		flash("There was a problem fetching the results");
 	}
 	
-
+	$action = $_POST["action"];
+	
 	if($action === "deposit") {
 		$act_src = $r["account_number"];
 		$act_dest = $_POST["account_dest"];
@@ -81,7 +82,7 @@ if(isset($_POST["save"])){
 	}
 
 	$amount = $_POST["amount"];
-	$action = $_POST["action"];
+	
 	$balChange = 0 - $amount;
 	$createdDate = date('Y-m-d H:i:s');//calc
 	$db = getDB();
