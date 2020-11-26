@@ -141,7 +141,7 @@ if(isset($_POST["save"])){
 		flash("Error creating: " . var_export($e, true));
 	}
 
-	$STH = $db->prepare("UPDATE Accounts SET balance=5.00 WHERE id = $act_src");
+	$STH = $db->prepare("UPDATE Accounts SET balance=5.00 WHERE id = $act_dest");
 	$RH = $STH->execute();
 	if($RH){
 		flash("Balance updated 2");
