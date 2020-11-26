@@ -92,7 +92,7 @@ if(isset($_POST["save"])){
 	$createdDate = date('Y-m-d H:i:s');//calc
 	
 
-	//First insertion
+	//FIRST INSERTION
 	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created) 
 		VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created)");
 
@@ -113,12 +113,11 @@ if(isset($_POST["save"])){
 		flash("Error creating: " . var_export($e, true));
 	}
 
-	$STH = $db->prepare("UPDATE Accounts SET balance=balance+$balChange from Accounts WHERE id = $act_src");
+	$STH = $db->prepare("UPDATE Accounts SET balance=balance+$balChange WHERE id = $act_src");
 	$RH = $STH->execute();
 	$RESULTSH = $STH->fetch();
 
-
-	//Second insertion
+	//SECOND INSERTION
 	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created) 
 		VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created)");
 	$balChange = $amount;
@@ -138,6 +137,10 @@ if(isset($_POST["save"])){
 		$e = $stmt->errorInfo();
 		flash("Error creating: " . var_export($e, true));
 	}
+
+	$STH = $db->prepare("UPDATE Accounts SET balance=balance+$balChange WHERE id = $act_src");
+	$RH = $STH->execute();
+	$RESULTSH = $STH->fetch();
 }
 ?>
 <?php require(__DIR__ . "/partials/flash.php");
