@@ -115,6 +115,9 @@ if(isset($_POST["save"])){
 
 	$STH = $db->prepare("UPDATE Accounts SET balance=balance+$balChange WHERE id = $act_src");
 	$RH = $STH->execute();
+	if($RH){
+		flash("Balance updated");
+	}
 	$RESULTSH = $STH->fetch();
 
 	//SECOND INSERTION
