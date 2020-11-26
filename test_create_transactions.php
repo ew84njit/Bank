@@ -57,7 +57,7 @@ if(isset($_POST["save"])){
 	$statement = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number = 000000000000");
 
-	$r = $statementt->execute([":user_id" => $user_id]);
+	$r = $statementt->execute();
 
 	if ($r){
 		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
