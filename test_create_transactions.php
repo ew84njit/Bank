@@ -53,6 +53,8 @@ else {
 </form>
 
 <?php
+
+$results = [];
 if(isset($_POST["save"])){
 	$statement = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number = 000000000000");
@@ -69,7 +71,7 @@ if(isset($_POST["save"])){
 	$action = $_POST["action"];
 
 	if($action == "deposit") {
-		$act_src = $results[000000000000];
+		$act_src = $results["account_number"];
 		$act_dest = $_POST["account_dest"];
 	}
 	else if($action == "withdraw") {
