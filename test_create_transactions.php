@@ -62,7 +62,7 @@ if(isset($_POST["save"])){
 		WHERE account_number = 000000000000");
 	$r = $statement->execute();
 	if ($r){
-		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$results = $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
 	else{
 		flash("There was a problem fetching the results");
