@@ -58,19 +58,21 @@ if(isset($_POST["save"])){
 	$act_dest = $_POST["account_dest"];
 	$amount = $_POST["amount"];
 	$action = $_POST["action"];
+	$balChange = 0-$amount;
 
 	$createdDate = date('Y-m-d H:i:s');//calc
 	$db = getDB();
 
 	//First insertion
-	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, created) 
-		VALUES(:act_src, :act_dest, :amount, :action_type, :created)");
-	
+	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created) 
+		VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created)");
+
 	$r = $stmt->execute([
 		":act_src"=>$act_src,
 		":act_dest"=>$act_dest,
 		":amount"=>$amount,
 		":action_type"=>$action,
+		":balChange"=>$balChange,
 		":created"=>$createdDate
 	]);
 
@@ -83,14 +85,15 @@ if(isset($_POST["save"])){
 	}
 
 	//Second insertion
-	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, created) 
-		VALUES(:act_src, :act_dest, :amount, :action_type, :created)");
-	
+	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created) 
+		VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created)");
+	$balChange = $amount;
 	$r = $stmt->execute([
 		":act_src"=>$act_dest,
 		":act_dest"=>$act_src,
 		":amount"=>$amount,
 		":action_type"=>$action,
+		":balChange"=>$balChange,
 		":created"=>$createdDate
 	]);
 
