@@ -54,27 +54,33 @@ else {
 
 <?php
 
-$results = [];
+
 if(isset($_POST["save"])){
 	$db = getDB();
-
-	$statement = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
+	$results = [];
+	$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number = 000000000000");
-	$r = $statement->execute();
-	if ($r){
-		$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+	
+	$r = $stmt->execute();
+
+	if ($r)
+	{
+		//$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$world = $stmt->fetch();
 	}
-	else{
+	else
+	{
 		flash("There was a problem fetching the results");
 	}
+
 	$action = $_POST["action"]; //deposit or withdraw or transfer
 	if($action == "deposit") {
-		$act_src = $results["account_number"];
+		$act_src = $world["id"];
 		$act_dest = $_POST["account_dest"];
 	}
 	else if($action == "withdraw") {
 		$act_src = $_POST["account_src"];
-		$act_dest = $results["account_number"];
+		$act_dest = $world["id"];
 	} 
 	else {
 		$act_src = $_POST["account_src"];
