@@ -67,12 +67,12 @@ if(isset($_POST["save"])){
 	}
 	
 	$action = $_POST["action"];
-	
-	if($action === "deposit") {
+
+	if($action == "deposit") {
 		$act_src = $r["account_number"];
 		$act_dest = $_POST["account_dest"];
 	}
-	else if($action === "withdraw") {
+	else if($action == "withdraw") {
 		$act_src = $_POST["account_src"];
 		$act_dest = $r["account_number"];
 	} 
