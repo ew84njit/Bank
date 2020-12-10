@@ -60,6 +60,7 @@ else {
 if(isset($_POST["save"])){
 	$db = getDB();
 	$results = [];
+	$amountValid = true;
 	$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number = 000000000000");
 	$r = $stmt->execute();
@@ -103,68 +104,71 @@ if(isset($_POST["save"])){
 
 	$amount = $_POST["amount"];
 	if($amount > $source["balance"]){
+		$amountValid = false;
 		flash("Amount is greater than source balance.");
 	}
 	
-	$balChange = 0 - $amount;
-	$createdDate = date('Y-m-d H:i:s');//calc
-	
+	if($amountValid){
+		$balChange = 0 - $amount;
+		$createdDate = date('Y-m-d H:i:s');//calc
+		
 
-	//FIRST INSERTION
-	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created) 
-		VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created)");
+		//FIRST INSERTION
+		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created) 
+			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created)");
 
-	$r = $stmt->execute([
-		":act_src"=>$act_src,
-		":act_dest"=>$act_dest,
-		":amount"=>$amount,
-		":action_type"=>$action,
-		":balChange"=>$balChange,
-		":created"=>$createdDate
-	]);
+		$r = $stmt->execute([
+			":act_src"=>$act_src,
+			":act_dest"=>$act_dest,
+			":amount"=>$amount,
+			":action_type"=>$action,
+			":balChange"=>$balChange,
+			":created"=>$createdDate
+		]);
 
-	if($r){
-		flash("Created transaction with id: " . $db->lastInsertId());
+		if($r){
+			flash("Created transaction with id: " . $db->lastInsertId());
+		}
+		else{
+			$e = $stmt->errorInfo();
+			flash("Error creating: " . var_export($e, true));
+		}
+
+		$STH = $db->prepare("UPDATE Accounts SET balance=balance+$balChange WHERE id = $act_src");
+		$RH = $STH->execute();
+		if($RH){
+			flash("Balance updated");
+		}
+		$RESULTSH = $STH->fetch();
+
+		//SECOND INSERTION
+		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created) 
+			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created)");
+		$balChange = $amount;
+		$r = $stmt->execute([
+			":act_src"=>$act_dest,
+			":act_dest"=>$act_src,
+			":amount"=>$amount,
+			":action_type"=>$action,
+			":balChange"=>$balChange,
+			":created"=>$createdDate
+		]);
+
+		if($r){
+			flash("Created transaction with id: " . $db->lastInsertId());
+		}
+		else{
+			$e = $stmt->errorInfo();
+			flash("Error creating: " . var_export($e, true));
+		}
+
+		$STH = $db->prepare("UPDATE Accounts SET balance=balance+$balChange WHERE id = $act_dest");
+		$RH = $STH->execute();
+		if($RH){
+			flash("Balance updated 2");
+		}
+		$RESULTSH = $STH->fetch();
 	}
-	else{
-		$e = $stmt->errorInfo();
-		flash("Error creating: " . var_export($e, true));
-	}
-
-	$STH = $db->prepare("UPDATE Accounts SET balance=balance+$balChange WHERE id = $act_src");
-	$RH = $STH->execute();
-	if($RH){
-		flash("Balance updated");
-	}
-	$RESULTSH = $STH->fetch();
-
-	//SECOND INSERTION
-	$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created) 
-		VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created)");
-	$balChange = $amount;
-	$r = $stmt->execute([
-		":act_src"=>$act_dest,
-		":act_dest"=>$act_src,
-		":amount"=>$amount,
-		":action_type"=>$action,
-		":balChange"=>$balChange,
-		":created"=>$createdDate
-	]);
-
-	if($r){
-		flash("Created transaction with id: " . $db->lastInsertId());
-	}
-	else{
-		$e = $stmt->errorInfo();
-		flash("Error creating: " . var_export($e, true));
-	}
-
-	$STH = $db->prepare("UPDATE Accounts SET balance=balance+$balChange WHERE id = $act_dest");
-	$RH = $STH->execute();
-	if($RH){
-		flash("Balance updated 2");
-	}
-	$RESULTSH = $STH->fetch();
 }
 ?>
 <?php require(__DIR__ . "/partials/flash.php");
