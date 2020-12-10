@@ -107,15 +107,16 @@ if(isset($_POST["save"])){
 		$amountValid = false;
 		flash("Amount is greater than source balance.");
 	}
-	
+	$memo = $_POST["memo"];
+
 	if($amountValid){
 		$balChange = 0 - $amount;
 		$createdDate = date('Y-m-d H:i:s');//calc
 		
 
 		//FIRST INSERTION
-		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created) 
-			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created)");
+		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created, memo) 
+			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created, :memo)");
 
 		$r = $stmt->execute([
 			":act_src"=>$act_src,
@@ -123,7 +124,8 @@ if(isset($_POST["save"])){
 			":amount"=>$amount,
 			":action_type"=>$action,
 			":balChange"=>$balChange,
-			":created"=>$createdDate
+			":created"=>$createdDate,
+			":memo"=>$memo
 		]);
 
 		if($r){
@@ -151,7 +153,8 @@ if(isset($_POST["save"])){
 			":amount"=>$amount,
 			":action_type"=>$action,
 			":balChange"=>$balChange,
-			":created"=>$createdDate
+			":created"=>$createdDate,
+			":memo"=>$memo
 		]);
 
 		if($r){
