@@ -62,7 +62,6 @@ if(isset($_POST["save"])){
 	$results = [];
 	$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number = 000000000000");
-	
 	$r = $stmt->execute();
 
 	if ($r)
@@ -89,7 +88,24 @@ if(isset($_POST["save"])){
 		$act_dest = $_POST["account_dest"];
 	}
 
+	$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
+		WHERE account_number=:act_src");
+	$r = $stmt->execute([":act_src"=>$act_src]);
+	
+	if ($r)
+	{
+		$source = $stmt->fetch();
+	}
+	else
+	{
+		flash("There was a problem fetching the results");
+	}
+
 	$amount = $_POST["amount"];
+	if($amount > $source["balance"]){
+		flash("Amount is greater than source balance.");
+	}
+	
 	$balChange = 0 - $amount;
 	$createdDate = date('Y-m-d H:i:s');//calc
 	
