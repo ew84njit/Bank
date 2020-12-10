@@ -89,7 +89,7 @@ if(isset($_POST["save"])){
 		$act_dest = $_POST["account_dest"];
 	}
 
-	$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
+	$stmt = $db->prepare("SELECT id, account_number, balance from Accounts 
 		WHERE account_number=:act_src");
 	$r = $stmt->execute([":act_src"=>$act_src]);
 	
@@ -103,6 +103,8 @@ if(isset($_POST["save"])){
 	}
 
 	$amount = $_POST["amount"];
+	echo($source["balance"]);
+
 	if($amount > $source["balance"]){
 		$amountValid = false;
 		flash("Amount is greater than source balance.");
