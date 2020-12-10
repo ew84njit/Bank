@@ -89,7 +89,7 @@ if(isset($_POST["save"])){
 		$act_src = $_POST["account_src"];
 		$act_dest = $_POST["account_dest"];
 	}
-
+	echo($act_src);
 	$stmtB = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number=:act_src");
 	$rB = $stmtB->execute([":act_src"=>$act_src]);
