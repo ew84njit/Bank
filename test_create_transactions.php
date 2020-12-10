@@ -144,8 +144,8 @@ if(isset($_POST["save"])){
 		$RESULTSH = $STH->fetch();
 
 		//SECOND INSERTION
-		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created) 
-			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created)");
+		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created, memo) 
+			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created, :memo)");
 		$balChange = $amount;
 		$r = $stmt->execute([
 			":act_src"=>$act_dest,
