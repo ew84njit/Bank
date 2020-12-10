@@ -65,7 +65,7 @@ if(isset($_POST["save"])){
 	$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number = 000000000000");
 	$r = $stmt->execute();
-
+	
 	if ($r)
 	{
 		//$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -75,7 +75,7 @@ if(isset($_POST["save"])){
 	{
 		flash("There was a problem fetching the results");
 	}
-
+	echo($world["balance"]);
 	$action = $_POST["action"]; //deposit or withdraw or transfer
 	if($action == "deposit") {
 		$act_src = $world["id"];
