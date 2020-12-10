@@ -11,9 +11,10 @@ if (!has_role("Admin")) {
 $query = "";
 $results = [];
 $db = getDB();
+$userID = get_current_user();
 $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-	from Accounts WHERE account_number like :q LIMIT 10");
-$r = $stmt->execute([":q" => "%$query%"]);
+	from Accounts WHERE user_id = :userID");
+$r = $stmt->execute([":userID" => $userID]);
 if ($r) {
 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -141,7 +142,7 @@ if(isset($_POST["save"])){
 		flash("Error creating: " . var_export($e, true));
 	}
 
-	$STH = $db->prepare("UPDATE Accounts SET balance=5.00 WHERE id = $act_dest");
+	$STH = $db->prepare("UPDATE Accounts SET balance=balance+$balChange WHERE id = $act_dest");
 	$RH = $STH->execute();
 	if($RH){
 		flash("Balance updated 2");
