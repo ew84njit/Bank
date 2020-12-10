@@ -60,6 +60,7 @@ else {
 if(isset($_POST["save"])){
 	$db = getDB();
 	$results = [];
+	$source = [];
 	$amountValid = true;
 	$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number = 000000000000");
@@ -95,7 +96,7 @@ if(isset($_POST["save"])){
 	
 	if ($r)
 	{
-		$source = $stmt->fetch();
+		$source = $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 	else
 	{
