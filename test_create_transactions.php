@@ -90,20 +90,20 @@ if(isset($_POST["save"])){
 		$act_dest = $_POST["account_dest"];
 	}
 
-	$stmt = $db->prepare("SELECT id, account_number, balance from Accounts 
+	$stmtB = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number=:act_src");
-	$r = $stmt->execute([":act_src"=>$act_src]);
-	if ($r){
-		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$rB = $stmtB->execute([":act_src"=>$act_src]);
+	if ($rB){
+		$source = $stmtB->fetch();
 	}
 	else{
 		flash("There was a problem fetching the results");
 	}
 
 	$amount = $_POST["amount"];
-	echo($results["balance"]);
+	echo($source["balance"]);
 
-	if($amount > $results["balance"]){
+	if($amount > $source["balance"]){
 		$amountValid = false;
 		flash("Amount is greater than source balance.");
 	}
