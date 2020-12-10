@@ -45,7 +45,7 @@ else {
 	<select name="action" id="action">
 		<option value="deposit">Deposit</option>
 		<option value="withdraw">Withdraw</option>
-		<option value="transfer">Withdraw</option>
+		<option value="transfer">Transfer</option>
 	</select>
 	<br></br>
 	<label for="memo">Memo</label>
