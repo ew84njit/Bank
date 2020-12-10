@@ -11,7 +11,7 @@ if (!has_role("Admin")) {
 $query = "";
 $results = [];
 $db = getDB();
-$userID = get_current_user();
+$userID = get_user_id();
 $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
 	from Accounts WHERE user_id = :userID");
 $r = $stmt->execute([":userID" => $userID]);
