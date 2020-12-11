@@ -46,20 +46,32 @@ else {
         <?php foreach ($results as $r): ?>
             <div class="list-group-item">
                 <div>
-                    <div>Number:</div>
-                    <div><?php safer_echo($r["account_number"]); ?></div>
+                    <div>From:</div>
+                    <div><?php safer_echo($r["act_src_id"]); ?></div>
                 </div>
                 <div>
-                    <div>User ID:</div>
-                    <div><?php safer_echo($r["user_id"]); ?></div>
+                    <div>To:</div>
+                    <div><?php safer_echo($r["act_dest_id"]); ?></div>
                 </div>
                 <div>
-                    <div>Account Type:</div>
-                    <div><?php safer_echo($r["account_type"]); ?></div>
+                    <div>Amount:</div>
+                    <div><?php safer_echo($r["amount"]); ?></div>
                 </div>
                 <div>
-                    <div>Balance:</div>
-                    <div><?php safer_echo($r["balance"]); ?></div>
+                    <div>Type:</div>
+                    <div><?php safer_echo($r["action_type"]); ?></div>
+                </div>
+                <div>
+                    <div>Memo:</div>
+                    <div><?php safer_echo($r["memo"]); ?></div>
+                </div>
+                <div>
+                    <div>Balance Change:</div>
+                    <div><?php safer_echo($r["balance_change"]); ?></div>
+                </div>
+                <div>
+                    <div>Date:</div>
+                    <div><?php safer_echo($r["created"]); ?></div>
                 </div>
                 <div>
                     <a type="button" href="test_edit_egg.php?id=<?php safer_echo($r['id']); ?>">Edit</a>
