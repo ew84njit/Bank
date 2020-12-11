@@ -125,7 +125,7 @@ if (isset($_POST["saved"])) {
 $db = getDB();
 $user = get_user_id();
 $stmt = $db->prepare("SELECT id, first_name, last_name
-    from BankUsers WHERE id = :user like :q LIMIT 10");
+    from BankUsers WHERE id = :user");
 
 $r = $stmt->execute([":user" => $user]);
 
