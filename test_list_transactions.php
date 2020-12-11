@@ -19,7 +19,7 @@ $user_id = get_user_id();
 
 $stmtActs = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
     from Accounts WHERE account_number=:user_id");
-$rActs = $stmt->execute([":user_id"=>$user_id]);
+$rActs = $stmtActs->execute([":user_id"=>$user_id]);
 
 if ($rActs) {$acts = $stmt->fetch();}
 else {flash("There was a problem fetching the results");}
