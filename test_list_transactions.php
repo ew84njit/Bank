@@ -23,7 +23,7 @@ $rActs = $stmtActs->execute([":user_id"=>$user_id]);
 if ($rActs) {$acts = $stmtActs->fetch();}
 else {flash("There was a problem fetching the results");}
 
-echo($rActs["user_id"]);
+echo($acts["user_id"]);
 
 $stmt = $db->prepare("SELECT id, act_src, act_dest_id, amount, action_type, created
     from Transactions WHERE act_src=:userAct LIMIT 10");
