@@ -10,5 +10,6 @@ CREATE TABLE Transactions
     created        datetime default current_timestamp,
     primary key (id),
     foreign key (act_src_id) references Accounts (id),
-    foreign key (act_dest_id) references Accounts (id)
+    foreign key (act_dest_id) references Accounts (id),
+    foreign key (user_id) references Accounts(user_id)
 )

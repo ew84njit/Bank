@@ -25,8 +25,12 @@ else {flash("There was a problem fetching the results");}
 
 echo($acts["user_id"]);
 
-$stmt = $db->prepare("SELECT id, act_src, act_dest_id, amount, action_type, created
-    from Transactions WHERE act_src=:userAct LIMIT 10");
+
+
+
+$stmt = $db->prepare("SELECT Transactions.id, Transactions.act_src, Transactions.act_dest_id, 
+    Transactions.amount, Transactions.action_type, Transactions.created, Accounts.user_id
+    from Transactions INNER JOIN Accounts ON Transactions.act_src= LIMIT 10");
 $r = $stmt->execute();
 
 if ($r) {

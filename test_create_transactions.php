@@ -61,6 +61,7 @@ if(isset($_POST["save"])){
 	$db = getDB();
 	$results = [];
 	$source = [];
+	$userID = get_user_id();
 	$amountValid = true;
 	$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number = 000000000000");
@@ -115,8 +116,8 @@ if(isset($_POST["save"])){
 		
 
 		//FIRST INSERTION
-		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created, memo) 
-			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created, :memo)");
+		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created, memo, user_id) 
+			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created, :memo, :user_id)");
 
 		$r = $stmt->execute([
 			":act_src"=>$act_src,
@@ -125,7 +126,8 @@ if(isset($_POST["save"])){
 			":action_type"=>$action,
 			":balChange"=>$balChange,
 			":created"=>$createdDate,
-			":memo"=>$memo
+			":memo"=>$memo,
+			":user_id"=>$userID
 		]);
 
 		if($r){
@@ -144,8 +146,8 @@ if(isset($_POST["save"])){
 		$RESULTSH = $STH->fetch();
 
 		//SECOND INSERTION
-		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created, memo) 
-			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created, :memo)");
+		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created, memo, user_id) 
+			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created, :memo, :user_id)");
 		$balChange = $amount;
 		$r = $stmt->execute([
 			":act_src"=>$act_dest,
@@ -154,7 +156,8 @@ if(isset($_POST["save"])){
 			":action_type"=>$action,
 			":balChange"=>$balChange,
 			":created"=>$createdDate,
-			":memo"=>$memo
+			":memo"=>$memo,
+			":user_id"=>$userID
 		]);
 
 		if($r){
