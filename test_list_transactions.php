@@ -28,13 +28,12 @@ echo($acts["user_id"]);
 
 
 
-$stmt = $db->prepare("SELECT Transactions.id, Transactions.act_src, Transactions.act_dest_id, 
-    Transactions.amount, Transactions.action_type, Transactions.created, Accounts.user_id
-    from Transactions INNER JOIN Accounts ON Transactions.act_src= LIMIT 10");
-$r = $stmt->execute();
+$stmt = $db->prepare("SELECT id, act_src_id, act_dest_id, amount, action_type, memo, balance_change, created, user_id
+    from Transactions WHERE user_id=:user_id LIMIT 10");
+$r = $stmt->execute(["user_id"=>$user_id]);
 
 if ($r) {
-    $results = $stmt->fetch();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 else {
     flash("There was a problem fetching the results");
