@@ -136,6 +136,7 @@ else {
     flash("There was a problem fetching the results");
 }
 safer_echo($results["first_name"]);
+echo(" ");
 safer_echo($results["last_name"]);
 
 ?>
