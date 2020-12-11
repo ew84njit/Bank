@@ -13,26 +13,30 @@ $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 }
-if (isset($_POST["search"]) && !empty($query)) {
-    $db = getDB();
-    $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-        from Accounts WHERE account_number like :q LIMIT 10");
 
-    $r = $stmt->execute([":q" => "%$query%"]);
+$db = getDB();
+$user_id = get_user_id();
 
-    if ($r) {
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    else {
-        flash("There was a problem fetching the results");
-    }
+$stmtActs = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
+    from Accounts WHERE account_number=:user_id");
+$rActs = $stmt->execute([":user_id"=>$user_id]);
+
+if ($rActs) {$acts = $stmt->fetch();}
+else {flash("There was a problem fetching the results");}
+echo($rActs["user_id"]);
+
+$stmt = $db->prepare("SELECT id, act_src, act_dest_id, amount, action_type, created
+    from Transactions WHERE act_src=:userAct LIMIT 10");
+$r = $stmt->execute();
+
+if ($r) {
+    $results = $stmt->fetch();
 }
-?>
+else {
+    flash("There was a problem fetching the results");
+}
 
-<form method="POST">
-    <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-    <input type="submit" value="Search" name="search"/>
-</form>
+?>
 
 <?php if (count($results) > 0): ?>
     <div class="list-group">
