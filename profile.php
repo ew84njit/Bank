@@ -125,12 +125,12 @@ if (isset($_POST["saved"])) {
 $db = getDB();
 $user = get_user_id();
 $stmt = $db->prepare("SELECT id, first_name, last_name
-    from BankUsers WHERE id=:user like :q LIMIT 10");
+    from BankUsers WHERE id = :user like :q LIMIT 10");
 
 $r = $stmt->execute([":user" => $user]);
 
 if ($r) {
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $results = $stmt->fetch();
 }
 else {
     flash("There was a problem fetching the results");
