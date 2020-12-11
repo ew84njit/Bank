@@ -21,7 +21,7 @@ $stmtActs = $db->prepare("SELECT id, account_number, user_id, account_type, open
     from Accounts WHERE account_number=:user_id");
 $rActs = $stmtActs->execute([":user_id"=>$user_id]);
 
-if ($rActs) {$acts = $stmt->fetch();}
+if ($rActs) {$acts = $stmtActs->fetch();}
 else {flash("There was a problem fetching the results");}
 echo($rActs["user_id"]);
 
