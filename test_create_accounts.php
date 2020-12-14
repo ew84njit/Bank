@@ -10,12 +10,10 @@ $db = getDB();
 $myRandomString = generateRandomString(12);
 $genStmt = $db->prepare("SELECT account_number FROM table");
 $res = $genStmt->execute();
-echo("Echo");
+echo("Echo\n");
+$result = $genStmt->fetch(PDO::FETCH_ASSOC);
+print_r($result);
 
-while ($result = $genStmt->fetch(PDO::FETCH_ASSOC))
-{
-	echo $result['account_number'];
-}
 ?>
 
 <form method="POST">
