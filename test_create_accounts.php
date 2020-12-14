@@ -28,7 +28,7 @@ if(isset($_POST["save"])){
 	$res = $genStmt->execute();
 
 	$result = $genStmt->fetchAll(PDO::FETCH_ASSOC);
-	echo($result);
+	print_r($result);
 
 	//TODO add proper validation/checks
 	$name = $_POST["name"];
