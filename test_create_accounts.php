@@ -5,6 +5,17 @@ if (!has_role("Admin")) {
     flash("You don't have permission to access this page");
     die(header("Location: login.php"));
 }
+
+$db = getDB();
+$myRandomString = generateRandomString(12);
+$genStmt = $db->prepare("SELECT account_number FROM table");
+$res = $genStmt->execute();
+echo("Echo");
+
+while ($result = $genStmt->fetch(PDO::FETCH_ASSOC))
+{
+	echo $result['account_number'];
+}
 ?>
 
 <form method="POST">
@@ -22,16 +33,7 @@ if (!has_role("Admin")) {
 
 <?php
 if(isset($_POST["save"])){
-	$db = getDB();
-	$myRandomString = generateRandomString(12);
-	$genStmt = $db->prepare("SELECT account_number FROM table");
-	$res = $genStmt->execute();
 	
-
-	while ($result = $genStmt->fetch(PDO::FETCH_ASSOC))
-	{
-		echo $result['account_number'];
-	}
 
 	//TODO add proper validation/checks
 	$name = $_POST["name"];
