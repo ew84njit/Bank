@@ -1,10 +1,12 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
 <?php
+/*
 if (!has_role("Admin")) {
     //this will redirect to login and kill the rest of this script (prevent it from executing)
     flash("You don't have permission to access this page");
     die(header("Location: login.php"));
 }
+*/
 ?>
 
 <form method="POST">
@@ -12,8 +14,10 @@ if (!has_role("Admin")) {
 	<input name="name" placeholder="Name"/>
 
 	<label>Account Type</label>
-	<input type="text" name="account_type"/>
-	
+	<select id="account_type" name="account_type">
+		<option value="Checking">Checking</option>
+		<option value="Savings">Savings</option>
+	</select>
 	<label>Balance</label>
 	<input type="text" name="bal"/>
 
