@@ -12,6 +12,7 @@ $genStmt = $db->prepare("SELECT account_number from Accounts");
 $res = $genStmt->execute();
 echo("Echo\n");
 $result = $genStmt->fetch(PDO::FETCH_ASSOC);
+print_r($result);
 
 
 ?>
