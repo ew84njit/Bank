@@ -6,7 +6,17 @@ if (!has_role("Admin")) {
     die(header("Location: login.php"));
 }
 
-
+$db = getDB();
+$myRandomString = generateRandomString(12);
+$genStmt = $db->prepare("SELECT account_number from Accounts");
+$res = $genStmt->execute();
+echo("Echo\n");
+$result = $genStmt->fetchAll(PDO::FETCH_COLUMN);
+//print_r($result);
+foreach($result as $num){
+	echo($num);
+	echo(\n);
+}
 ?>
 
 
@@ -36,7 +46,6 @@ if(isset($_POST["save"])){
 	foreach($result as $num){
 		echo($num);
 		echo(\n);
-
 	}
 
 	//TODO add proper validation/checks
