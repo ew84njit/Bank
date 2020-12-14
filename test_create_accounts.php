@@ -5,11 +5,7 @@ if (!has_role("Admin")) {
     flash("You don't have permission to access this page");
     die(header("Location: login.php"));
 }
-
-
 ?>
-
-
 
 <form method="POST">
 	<label>Name</label>
@@ -31,19 +27,17 @@ if(isset($_POST["save"])){
 	$res = $genStmt->execute();
 	echo("Echo\n");
 	$result = $genStmt->fetchAll(PDO::FETCH_COLUMN);
-	//print_r($result);
-
+	/*
 	$myRandomString = generateRandomString(12);
 	while(!in_array($myRandomString, $result)){
 		$myRandomString = generateRandomString(12);
 	}
-	$accountNum = $myRandomString;
-
-
+	*/
 	//TODO add proper validation/checks
 	$name = $_POST["name"];
 	
 	$userID = get_user_id();
+	$accountNum = $myRandomString;
 	$accountType = $_POST["account_type"];
 	$bal = $_POST["bal"];
 
@@ -79,7 +73,7 @@ function generateRandomString($length = 12) {
     }
     return $randomString;
 }
-//usage 
+
 
 ?>
 <?php require(__DIR__ . "/partials/flash.php");
