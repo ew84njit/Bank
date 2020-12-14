@@ -15,7 +15,7 @@ $result = $genStmt->fetchAll(PDO::FETCH_COLUMN);
 //print_r($result);
 foreach($result as $num){
 	echo($num);
-	echo(\n);
+	echo("\n");
 }
 ?>
 
