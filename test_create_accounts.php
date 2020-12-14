@@ -18,8 +18,9 @@ $(document).ready(function () {
 			$('#savingsForm').removeAttr('data-error');
 		}
 	});
+	$("#actType").trigger("change");
 });
-$("#actType").trigger("change");
+
 
 </script>
 <?php
