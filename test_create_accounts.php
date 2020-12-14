@@ -8,7 +8,7 @@ if (!has_role("Admin")) {
 
 $db = getDB();
 $myRandomString = generateRandomString(12);
-$genStmt = $db->prepare("SELECT account_number FROM table");
+$genStmt = $db->prepare("SELECT account_number from Accounts");
 $res = $genStmt->execute();
 echo("Echo\n");
 $result = $genStmt->fetch(PDO::FETCH_ASSOC);
