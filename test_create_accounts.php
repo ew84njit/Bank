@@ -9,16 +9,18 @@ $("#actType").change(function () {
 	var selected = $("#actType option:selected").form();
 	if ($(this).val() == "Savings") {
 		$('#Savings').show();
+		$('#savingsForm').attr('required', '');
+    	$('#savingsForm').attr('data-error', 'This field is required.');
   	} else {
 		$('#Savings').hide();
+		$('#savingsForm').removeAttr('required');
+    	$('#savingsForm').removeAttr('data-error');
   	}
 	//$('div').hide();
 	//$('#' + selected).show();
 });
-/*
-$(document).ready(function (e) {
-	$('div').hide();
-});*/
+$("#actType").trigger("change");
+
 </script>
 <?php
 /*
@@ -44,7 +46,7 @@ if (!has_role("Admin")) {
 
 	<div id="Savings">
 		<label>APY</label>
-		<input type="text" name="apy"/>
+		<input type="text" name="apy" id="savingsForm"/>
 	</div>
 	
 
