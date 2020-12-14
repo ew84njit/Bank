@@ -21,10 +21,10 @@ if (!has_role("Admin")) {
 	<label>Balance</label>
 	<input type="text" name="bal"/>
 
-	<?php if($_POST["account_type"] == "Savings"):?>
+	<div data-show-if="account_type:Savings">
 		<label>APY</label>
-		<input type="text" name="bal"/>
-	<?php endif; ?>
+		<input type="text" name="apy"/>
+	</div>
 	
 
 	<input type="submit" name="save" value="Create"/>
