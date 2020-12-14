@@ -12,10 +12,24 @@ $genStmt = $db->prepare("SELECT account_number FROM table");
 $res = $genStmt->execute();
 echo("Echo\n");
 $result = $genStmt->fetch(PDO::FETCH_ASSOC);
-print_r($result);
+
 
 ?>
+<?php if (count($result) > 0): ?>
+    <div class="list-group">
+        <?php foreach ($result as $r): ?>
+            <div class="list-group-item">
+                <div>
+                    <div>Number:</div>
+                    <div><?php safer_echo($r["account_number"]); ?></div>
+                </div>
 
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <p>No results</p>
+<?php endif; ?>
 <form method="POST">
 	<label>Name</label>
 	<input name="name" placeholder="Name"/>
@@ -31,6 +45,7 @@ print_r($result);
 
 <?php
 if(isset($_POST["save"])){
+	$db = getDB();
 	
 
 	//TODO add proper validation/checks
