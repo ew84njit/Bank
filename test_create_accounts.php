@@ -26,8 +26,9 @@ if(isset($_POST["save"])){
 	$myRandomString = generateRandomString(12);
 	$genStmt = $db->prepare("SELECT account_number FROM table");
 	$res = $genStmt->execute();
-	$result = $genStmt->fetchColumn();
-	print($result);
+	var_export($res, true);
+	$result = $genStmt->fetch(PDO::FETCH_ASSOC);
+	
 
 	//TODO add proper validation/checks
 	$name = $_POST["name"];
