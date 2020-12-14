@@ -28,9 +28,11 @@ if (isset($_POST["register"])) {
     if (isset($_POST["username"])) {
         $username = $_POST["username"];
     }
+
     if (isset($_POST["private"])) {
         $private = $_POST["private"];
-        echo($private);
+    } else {
+        $private = 0;
     }
     $isValid = true;
     //check if passwords match on the server side
@@ -101,7 +103,7 @@ if (!isset($username)) {
     <input type="password" id="p1" name="password" required/>
     <label for="p2">Confirm Password:</label>
     <input type="password" id="p2" name="confirm" required/>
-
-    <input type="checkbox" name="private" value="1"/>Private
+    <label for="private">Private:</label>
+    <input type="checkbox" name="private" value="1"/>
     <input type="submit" name="register" value="Register"/>
 </form>
