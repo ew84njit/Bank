@@ -21,11 +21,18 @@ if (!has_role("Admin")) {
 	<label>Balance</label>
 	<input type="text" name="bal"/>
 
+	<?php if($_POST["account_type"] == "Savings"):?>
+		<label>APY</label>
+		<input type="text" name="bal"/>
+	<?php endif; ?>
+	
+
 	<input type="submit" name="save" value="Create"/>
 </form>
 
 <?php
 if(isset($_POST["save"])){
+
 	$db = getDB();
 	$genStmt = $db->prepare("SELECT account_number from Accounts");
 	$res = $genStmt->execute();
@@ -46,6 +53,7 @@ if(isset($_POST["save"])){
 	$bal = $_POST["bal"];
 
 	$openDate = date('Y-m-d H:i:s');//calc
+	
 	
 
 	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance) 
