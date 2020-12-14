@@ -5,31 +5,17 @@ if (!has_role("Admin")) {
     flash("You don't have permission to access this page");
     die(header("Location: login.php"));
 }
-
 $db = getDB();
 $myRandomString = generateRandomString(12);
 $genStmt = $db->prepare("SELECT account_number from Accounts");
 $res = $genStmt->execute();
 echo("Echo\n");
-$result = $genStmt->fetchAll(PDO::FETCH_ASSOC);
+$result = $genStmt->fetchAll(PDO::FETCH_COUMN);
 print_r($result);
+
 ?>
 
-<?php if (count($result) > 0): ?>
-    <div class="list-group">
-        <?php foreach ($result as $r): ?>
-            <div class="list-group-item">
-                <div>
-                    <div>Number:</div>
-                    <div><?php safer_echo($r["account_number"]); ?></div>
-                </div>
 
-            </div>
-        <?php endforeach; ?>
-    </div>
-<?php else: ?>
-    <p>No results</p>
-<?php endif; ?>
 
 <form method="POST">
 	<label>Name</label>
@@ -46,8 +32,7 @@ print_r($result);
 
 <?php
 if(isset($_POST["save"])){
-	$db = getDB();
-	
+
 
 	//TODO add proper validation/checks
 	$name = $_POST["name"];
