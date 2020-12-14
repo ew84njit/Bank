@@ -21,7 +21,7 @@ if (!has_role("Admin")) {
 	<label>Balance</label>
 	<input type="text" name="bal"/>
 
-	<div data-show-if="account_type:Savings">
+	<div data-show-if="name:Jim">
 		<label>APY</label>
 		<input type="text" name="apy"/>
 	</div>
