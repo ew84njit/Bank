@@ -10,7 +10,7 @@ $myRandomString = generateRandomString(12);
 $genStmt = $db->prepare("SELECT account_number from Accounts");
 $res = $genStmt->execute();
 echo("Echo\n");
-$result = $genStmt->fetchAll(PDO::FETCH_COUMN);
+$result = $genStmt->fetchAll(PDO::FETCH_COLUMN);
 print_r($result);
 
 ?>
