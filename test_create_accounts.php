@@ -26,13 +26,16 @@ if(isset($_POST["save"])){
 	$myRandomString = generateRandomString(12);
 	$genStmt = $db->prepare("SELECT account_number FROM table");
 	$res = $genStmt->execute();
-	$result = $genStmt->fetch(PDO::FETCH_ASSOC);
-	print_r($result);
 	
+
+	while ($result = $genStmt->fetch(PDO::FETCH_ASSOC))
+	{
+		echo $result['account_number'];
+	}
 
 	//TODO add proper validation/checks
 	$name = $_POST["name"];
-	$accountNum = 111111111111;
+	$accountNum = 111111111101;
 	$userID = get_user_id();
 	$accountType = $_POST["account_type"];
 	$bal = $_POST["bal"];
