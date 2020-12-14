@@ -11,11 +11,10 @@ $myRandomString = generateRandomString(12);
 $genStmt = $db->prepare("SELECT account_number from Accounts");
 $res = $genStmt->execute();
 echo("Echo\n");
-$result = $genStmt->fetch(PDO::FETCH_ASSOC);
+$result = $genStmt->fetchAll(PDO::FETCH_ASSOC);
 print_r($result);
-
-
 ?>
+
 <?php if (count($result) > 0): ?>
     <div class="list-group">
         <?php foreach ($result as $r): ?>
@@ -31,6 +30,7 @@ print_r($result);
 <?php else: ?>
     <p>No results</p>
 <?php endif; ?>
+
 <form method="POST">
 	<label>Name</label>
 	<input name="name" placeholder="Name"/>
