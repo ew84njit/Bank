@@ -23,13 +23,12 @@ if (!has_role("Admin")) {
 <?php
 if(isset($_POST["save"])){
 	$db = getDB();
+	$myRandomString = generateRandomString(12);
+	$genStmt = $db->prepare("SELECT account_number FROM table");
+	$res = $genStmt->execute();
 
-	$generate = $db->prepare("SELECT random_num
-		FROM (SELECT FLOOR(RAND() * 999999999999) AS random_num) AS Accounts_Plus_1
-		WHERE random_num NOT IN (SELECT account_number FROM Accounts WHERE account_number IS NOT NULL)
-		LIMIT 1"
-	);
-	$accountNum = $generate->execute();
+	$result = $genStmt->fetchAll(PDO::FETCH_ASSOC);
+	echo($result);
 
 	//TODO add proper validation/checks
 	$name = $_POST["name"];
@@ -60,5 +59,17 @@ if(isset($_POST["save"])){
 		flash("Error creating: " . var_export($e, true));
 	}
 }
+
+function generateRandomString($length = 12) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+//usage 
+
 ?>
 <?php require(__DIR__ . "/partials/flash.php");
