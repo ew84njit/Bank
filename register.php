@@ -53,7 +53,7 @@ if (isset($_POST["register"])) {
             $stmt = $db->prepare("INSERT INTO BankUsers(email, first_name, last_name, username, password, private) 
                 VALUES(:email, :firstName, :lastName, :username, :password, :private)");
             //here's the data map for the parameter to data
-            $params = array(":email" => $email, ":fistName" => $firstName, ":lastName" => $lastName, 
+            $params = array(":email" => $email, ":firstName" => $firstName, ":lastName" => $lastName, 
                 ":username" => $username, ":password" => $hash, ":private" => $private);
             $r = $stmt->execute($params);
             //let's just see what's returned
