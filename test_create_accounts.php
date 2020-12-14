@@ -7,13 +7,18 @@
 <script>
 $("#actType").change(function () {
 	var selected = $("#actType option:selected").form();
-	$('div').hide();
-	$('#' + selected).show();
-	});
-
-$(document).ready(function (e) {
-	$('div').show();
+	if ($(this).val() == "Savings") {
+		$('#Savings').show();
+  	} else {
+		$('#Savings').hide();
+  	}
+	//$('div').hide();
+	//$('#' + selected).show();
 });
+/*
+$(document).ready(function (e) {
+	$('div').hide();
+});*/
 </script>
 <?php
 /*
