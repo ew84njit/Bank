@@ -6,17 +6,7 @@ if (!has_role("Admin")) {
     die(header("Location: login.php"));
 }
 
-$db = getDB();
-$myRandomString = generateRandomString(12);
-$genStmt = $db->prepare("SELECT account_number from Accounts");
-$res = $genStmt->execute();
-echo("Echo\n");
-$result = $genStmt->fetchAll(PDO::FETCH_COLUMN);
-//print_r($result);
-foreach($result as $num){
-	echo($num);
-	echo("\n");
-}
+
 ?>
 
 
@@ -37,20 +27,22 @@ foreach($result as $num){
 <?php
 if(isset($_POST["save"])){
 	$db = getDB();
-	$myRandomString = generateRandomString(12);
 	$genStmt = $db->prepare("SELECT account_number from Accounts");
 	$res = $genStmt->execute();
 	echo("Echo\n");
 	$result = $genStmt->fetchAll(PDO::FETCH_COLUMN);
 	//print_r($result);
-	foreach($result as $num){
-		echo($num);
-		echo(\n);
+
+	$myRandomString = generateRandomString(12);
+	while(!in_array($myRandomString, $result)){
+		$myRandomString = generateRandomString(12);
 	}
+	$accountNum = $myRandomString;
+
 
 	//TODO add proper validation/checks
 	$name = $_POST["name"];
-	$accountNum = 111111111101;
+	
 	$userID = get_user_id();
 	$accountType = $_POST["account_type"];
 	$bal = $_POST["bal"];
