@@ -29,10 +29,8 @@ if(isset($_POST["save"])){
 	$result = $genStmt->fetchAll(PDO::FETCH_COLUMN);
 	
 	$myRandomString = generateRandomString(12);
-	while(!in_array($myRandomString, $result)){
+	while(in_array($myRandomString, $result)){
 		$myRandomString = generateRandomString(12);
-		echo($myRandomString);
-		echo("\n");
 	}
 	
 	//TODO add proper validation/checks
