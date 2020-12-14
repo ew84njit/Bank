@@ -1,6 +1,9 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
 <script>
 $("#actType").change(function () {
 	var selected = $("#actType option:selected").form();
@@ -9,10 +12,9 @@ $("#actType").change(function () {
 	});
 
 $(document).ready(function (e) {
-	$('div').hide();
+	$('div').show();
 });
 </script>
-</head> 
 <?php
 /*
 if (!has_role("Admin")) {
