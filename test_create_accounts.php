@@ -1,4 +1,18 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$("#actType").change(function () {
+	var selected = $("#actType option:selected").form();
+	$('div').hide();
+	$('#' + selected).show();
+	});
+
+$(document).ready(function (e) {
+	$('div').hide();
+});
+</script>
+</head> 
 <?php
 /*
 if (!has_role("Admin")) {
@@ -14,14 +28,14 @@ if (!has_role("Admin")) {
 	<input name="name" placeholder="Name"/>
 
 	<label>Account Type</label>
-	<select id="account_type" name="account_type">
+	<select id="account_type" name="account_type" id="actType">
 		<option value="Checking">Checking</option>
 		<option value="Savings">Savings</option>
 	</select>
 	<label>Balance</label>
 	<input type="text" name="bal"/>
 
-	<div data-hide-if="name:Jim">
+	<div id="Savings">
 		<label>APY</label>
 		<input type="text" name="apy"/>
 	</div>
