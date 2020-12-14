@@ -11,9 +11,6 @@ if (!has_role("Admin")) {
 	<label>Name</label>
 	<input name="name" placeholder="Name"/>
 
-	<label>Account Number</label>
-	<input type="text" name="account_number"/>
-
 	<label>Account Type</label>
 	<input type="text" name="account_type"/>
 	
@@ -25,15 +22,24 @@ if (!has_role("Admin")) {
 
 <?php
 if(isset($_POST["save"])){
+	$db = getDB();
+
+	$generate = $db->prepare("SELECT random_num
+		FROM (SELECT FLOOR(RAND() * 999999999999) AS random_num) AS Accounts_Plus_1
+		WHERE random_num NOT IN (SELECT account_number FROM Accounts WHERE account_number IS NOT NULL)
+		LIMIT 1"
+	);
+	$accountNum = $generate->execute();
+
 	//TODO add proper validation/checks
 	$name = $_POST["name"];
-	$accountNum = $_POST["account_number"];
+	//$accountNum = $_POST["account_number"];
 	$userID = get_user_id();
 	$accountType = $_POST["account_type"];
 	$bal = $_POST["bal"];
 
 	$openDate = date('Y-m-d H:i:s');//calc
-	$db = getDB();
+	
 
 	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance) 
 		VALUES(:accountNum, :userID, :accountType, :openDate, :bal)");
