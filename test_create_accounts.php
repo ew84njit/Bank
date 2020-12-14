@@ -31,6 +31,8 @@ if(isset($_POST["save"])){
 	$myRandomString = generateRandomString(12);
 	while(!in_array($myRandomString, $result)){
 		$myRandomString = generateRandomString(12);
+		echo($myRandomString);
+		echo("\n");
 	}
 	
 	//TODO add proper validation/checks
@@ -69,7 +71,7 @@ function generateRandomString($length = 12) {
     $charactersLength = strlen($characters);
     $randomString = '';
     for ($i = 0; $i < $length; $i++) {
-        $randomString = $characters[rand(0, $charactersLength - 1)];
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
     }
     return $randomString;
 }
