@@ -103,7 +103,7 @@ if(isset($_POST["save"])){
     $action = "Debt Payment";
 
     if($amount > $source["balance"]){
-        $amountValid = false;
+        //$amountValid = false;
         echo("Account not enough balance");
     }
 
