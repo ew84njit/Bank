@@ -11,7 +11,8 @@ $user_id = get_user_id();
 $results = [];
 
 $db = getDB();
-$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts WHERE user_id = :user_id");
+$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance, active from Accounts 
+    WHERE user_id = :user_id AND active != 0");
 
 $r = $stmt->execute([":user_id" => $user_id]);
 
