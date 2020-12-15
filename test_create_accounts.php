@@ -82,7 +82,6 @@ if(isset($_POST["save"])){
 		$apy = NULL;
 	}
 	
-
 	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance, apy) 
 		VALUES(:accountNum, :userID, :accountType, :openDate, :bal, :apy)");
 
@@ -102,6 +101,8 @@ if(isset($_POST["save"])){
 		$e = $stmt->errorInfo();
 		flash("Error creating: " . var_export($e, true));
 	}
+
+	die(header("Location: test_list_accounts.php"));
 }
 
 function generateRandomString($length = 12) {
