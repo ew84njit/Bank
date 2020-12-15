@@ -29,7 +29,7 @@ else {
 }
 ?>
 
-<form>
+<form METHOD="POST">
     <label>Amount</label>
     <input type="number" name="amount" min=0.01 step=0.01 />
 
