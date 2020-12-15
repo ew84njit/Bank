@@ -30,7 +30,9 @@ else
 </form>
 
 <?php
+if(isset($_POST["save"])){
     $deleteID = $_POST["deleteAccount"];
     $stmt = $db->prepare("DELETE FROM Accounts WHERE id = :deleteID");
     $r = $stmt->execute([":deleteID" => $deleteID]);
+}
 ?>
