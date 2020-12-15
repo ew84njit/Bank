@@ -31,14 +31,17 @@ else
 
 <?php
 if(isset($_POST["save"])){
-    try{
-        $deleteID = $_POST["deleteAccount"];
-        $stmt = $db->prepare("DELETE FROM Accounts WHERE id = :deleteID");
-        $r = $stmt->execute([":deleteID" => $deleteID]);
-        echo("Deleted!");
+    $deleteID = $_POST["deleteAccount"];
+    $stmt = $db->prepare("UPDATE Accounts SET active=0 WHERE id=:deleteID");
+    $r = $stmt->execute([":deleteID" => $deleteID]);
+    if ($r) {
+        flash("Deleted!");
     }
-    catch(PDOException $e) {
-        echo $stmt . "<br>" . $e->getMessage();
+    else {
+        flash("There was a problem deleting");
     }
+
+
+
 }
 ?>
