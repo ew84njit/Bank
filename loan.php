@@ -46,7 +46,7 @@ if(isset($_POST["save"])){
 	$accountNum = $myRandomString;
     $accountType = "Loan";
     $apy = 0.06;
-    $bal = 0 - $_POST["loan_amount"] * 0.06;
+    $bal = 0 - ($_POST["loan_amount"] * (1+$apy));
     
 	$openDate = date('Y-m-d H:i:s');//calc
 	
