@@ -18,7 +18,7 @@ else {
 
 <form method="POST">
 	<label>Amount</label>
-    <input type="text" name="loan_amount" min=500.00 step=0.01 />
+    <input type="number" name="loan_amount" min=500.00 step=0.01 />
     <input type="submit" name="save" value="Get Loan"/>
     <label for="src">From: </label>
 	<select name="depositAccount" id="deposit">
