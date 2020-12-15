@@ -15,7 +15,7 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
+    $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance, apy
         from Accounts WHERE account_number like :q LIMIT 10");
 
     $r = $stmt->execute([":q" => "%$query%"]);
@@ -53,6 +53,10 @@ if (isset($_POST["search"]) && !empty($query)) {
                 <div>
                     <div>Balance:</div>
                     <div><?php safer_echo($r["balance"]); ?></div>
+                </div>
+                <div>
+                    <div>APY (if applicable):</div>
+                    <div><?php safer_echo($r["apy"]); ?></div>
                 </div>
                 <div>
                     <a type="button" href="test_edit_accounts.php?id=<?php safer_echo($r['id']); ?>">Edit</a>

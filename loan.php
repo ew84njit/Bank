@@ -162,7 +162,7 @@ if(isset($_POST["save"])){
 		$RESULTSH = $STH->fetch();
 	}
 
-	//die(header("Location: test_list_accounts.php"));
+	die(header("Location: test_list_accounts.php"));
 }
 
 function generateRandomString($length = 12) {
