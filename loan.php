@@ -44,9 +44,10 @@ if(isset($_POST["save"])){
 	//TODO add proper validation/checks
 	$userID = get_user_id();
 	$accountNum = $myRandomString;
-	$accountType = "Loan";
-    $bal = 0 - $_POST["loan_amount"];
+    $accountType = "Loan";
     $apy = 0.06;
+    $bal = 0 - $_POST["loan_amount"] * 0.06;
+    
 	$openDate = date('Y-m-d H:i:s');//calc
 	
 	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance, apy) 
@@ -102,13 +103,13 @@ if(isset($_POST["save"])){
 		flash("There was a problem fetching the results");
 	}
 
-	$amount = $_POST["loan_amount"];
+    $amount = $_POST["loan_amount"];
+    $action = "Loan";
 
 	if($amountValid){
 		$balChange = 0 - $amount;
 		$createdDate = date('Y-m-d H:i:s');//calc
 		
-
 		//FIRST INSERTION
 		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created, memo, user_id) 
 			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created, :memo, :user_id)");
@@ -120,7 +121,7 @@ if(isset($_POST["save"])){
 			":action_type"=>$action,
 			":balChange"=>$balChange,
 			":created"=>$createdDate,
-			":memo"=>$memo,
+			":memo"=>NULL,
 			":user_id"=>$userID
 		]);
 
@@ -150,7 +151,7 @@ if(isset($_POST["save"])){
 			":action_type"=>$action,
 			":balChange"=>$balChange,
 			":created"=>$createdDate,
-			":memo"=>$memo,
+			":memo"=>NULL,
 			":user_id"=>$userID
 		]);
 
