@@ -70,20 +70,6 @@ if(isset($_POST["save"])){
     $userID = get_user_id();
     
     $amountValid = true; //Check if amount is greater than source balance
-    
-	$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
-		WHERE account_number = 000000000000");
-	$r = $stmt->execute();
-	
-	if ($r)
-	{
-		//$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		$world = $stmt->fetch();
-	}
-	else
-	{
-		flash("There was a problem fetching the results");
-	}
 
     $act_src = $_POST["src"];
     $act_dest = $_POST["loan"];
