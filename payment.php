@@ -29,24 +29,26 @@ else {
 }
 ?>
 
-<label>Amount</label>
-    <input type="number" name="loan_amount" min=500.00 step=0.01 />
+<form>
+    <label>Amount</label>
+    <input type="number" name="amount" min=500.00 step=0.01 />
 
     <label for="src">Account: </label>
-	<select name="depositAccount" id="deposit">
+	<select name="src" id="src">
 		<?php foreach ($results as $r): ?>
 			<option value=<?php echo($r["id"]);?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
     </select>
 
-    <label for="src">Loan To Pay Off: </label>
-	<select name="depositAccount" id="deposit">
+    <label for="loan">Loan To Pay Off: </label>
+
+	<select name="loan" id="loan">
 		<?php foreach ($resultsLoan as $r): ?>
 			<option value=<?php echo($r["id"]);?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
     </select>
 
-    <input type="submit" name="save" value="Get Loan"/>
+    <input type="submit" name="save" value="Pay Loan"/>
 </form>
 
 <?php
@@ -85,8 +87,10 @@ if(isset($_POST["save"])){
     //WRITE THIS IN TRANSACTION HISTORY
 	$results = [];
 	$source = [];
-	$userID = get_user_id();
-	$amountValid = true;
+    $userID = get_user_id();
+    
+    $amountValid = true; //Check if amount is greater than source balance
+    
 	$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE account_number = 000000000000");
 	$r = $stmt->execute();
@@ -101,8 +105,8 @@ if(isset($_POST["save"])){
 		flash("There was a problem fetching the results");
 	}
 
-    $act_src = $world["id"];
-    $act_dest = $_POST["depositAccount"];
+    $act_src = $_POST["src"];
+    $act_dest = $_POST["loan"];
 
 
 	$stmtB = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
@@ -115,14 +119,19 @@ if(isset($_POST["save"])){
 		flash("There was a problem fetching the results");
 	}
 
-    $amount = $_POST["loan_amount"];
-    $action = "Loan";
+    $amount = $_POST["amount"];
+    $action = "Debt Payment";
+
+    if($amount > $source["balance"]){
+        $amountValid = false;
+        echo("Account not enough balance");
+    }
 
 	if($amountValid){
+        //FIRST INSERTION
 		$balChange = 0 - $amount;
 		$createdDate = date('Y-m-d H:i:s');//calc
 		
-		//FIRST INSERTION
 		$stmt = $db->prepare("INSERT INTO Transactions(act_src_id, act_dest_id, amount, action_type, balance_change, created, memo, user_id) 
 			VALUES(:act_src, :act_dest, :amount, :action_type, :balChange, :created, :memo, :user_id)");
 
