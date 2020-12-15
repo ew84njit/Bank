@@ -103,7 +103,7 @@ if(isset($_POST["save"])){
     $action = "Debt Payment";
 
     if($amount > $source["balance"]){
-        //$amountValid = false;
+        $amountValid = false;
         echo("Account not enough balance");
     }
 
@@ -166,3 +166,5 @@ if(isset($_POST["save"])){
 
 	//die(header("Location: test_list_accounts.php"));
 }
+?>
+<?php require(__DIR__ . "/partials/flash.php");?>
