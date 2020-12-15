@@ -62,26 +62,7 @@ if(isset($_POST["save"])){
     $bal = 0 - ($_POST["amount"] * (1+$apy));
     
 	$openDate = date('Y-m-d H:i:s');//calc
-	
-	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance, apy) 
-		VALUES(:accountNum, :userID, :accountType, :openDate, :bal, :apy)");
 
-	$r = $stmt->execute([
-		":accountNum"=>$accountNum,
-		":userID"=>$userID,
-		":accountType"=>$accountType,
-		":openDate"=>$openDate,
-		":bal"=>$bal,
-		":apy"=>$apy
-	]);
-
-	if($r){
-		flash("Created successfully with id: " . $db->lastInsertId());
-	}
-	else{
-		$e = $stmt->errorInfo();
-		flash("Error creating: " . var_export($e, true));
-    }
 
     //WRITE THIS IN TRANSACTION HISTORY
 	$results = [];
