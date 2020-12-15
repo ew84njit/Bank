@@ -31,7 +31,7 @@ else {
 
 <form>
     <label>Amount</label>
-    <input type="number" name="amount" min=500.00 step=0.01 />
+    <input type="number" name="amount" min=0.01 step=0.01 />
 
     <label for="src">Account: </label>
 	<select name="src" id="src">
