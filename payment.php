@@ -86,7 +86,7 @@ if(isset($_POST["save"])){
 	}
 
     $amount = $_POST["amount"];
-    $action = "Debt Payment";
+    $action = "Payment";
 
     if($amount > $source["balance"]){
         $amountValid = false;
