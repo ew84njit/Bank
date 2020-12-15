@@ -103,13 +103,6 @@ if(isset($_POST["save"])){
 	}
 
 	$amount = $_POST["loan_amount"];
-	echo($source["balance"]);
-
-	if($amount > $source["balance"]){
-		$amountValid = false;
-		flash("Amount is greater than source balance.");
-	}
-
 
 	if($amountValid){
 		$balChange = 0 - $amount;
