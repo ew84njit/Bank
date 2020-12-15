@@ -3,6 +3,8 @@
 <?php
 $query = "";
 $results = [];
+$resultsLoan = [];
+$loanStr = "Loan";
 $db = getDB();
 $userID = get_user_id();
 $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
@@ -14,32 +16,43 @@ if ($r) {
 else {
 	flash("There was a problem fetching the results");
 }
+
+//Getting loan accounts
+$stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
+    from Accounts WHERE user_id = :userID AND account_type= :loan");
+$rLoan = $stmt->execute([":userID" => $userID, ":loan" => $loanStr]);
+if ($r) {
+	$resultsLoan = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+else {
+	flash("There was a problem fetching the results");
+}
 ?>
 
-<form method="POST">
-	<label>Amount</label>
+<label>Amount</label>
     <input type="number" name="loan_amount" min=500.00 step=0.01 />
+
     <label for="src">Account: </label>
 	<select name="depositAccount" id="deposit">
 		<?php foreach ($results as $r): ?>
 			<option value=<?php echo($r["id"]);?>><?php safer_echo($r["account_number"]);?></option>
 		<?php endforeach; ?>
     </select>
+
+    <label for="src">Loan To Pay Off: </label>
+	<select name="depositAccount" id="deposit">
+		<?php foreach ($resultsLoan as $r): ?>
+			<option value=<?php echo($r["id"]);?>><?php safer_echo($r["account_number"]);?></option>
+		<?php endforeach; ?>
+    </select>
+
     <input type="submit" name="save" value="Get Loan"/>
 </form>
 
 <?php
 if(isset($_POST["save"])){
 	$db = getDB();
-	$genStmt = $db->prepare("SELECT account_number from Accounts");
-	$res = $genStmt->execute();
-	echo("Echo\n");
-	$result = $genStmt->fetchAll(PDO::FETCH_COLUMN);
 	
-	$myRandomString = generateRandomString(12);
-	while(in_array($myRandomString, $result)){
-		$myRandomString = generateRandomString(12);
-	}
 	//TODO add proper validation/checks
 	$userID = get_user_id();
 	$accountNum = $myRandomString;
@@ -164,17 +177,3 @@ if(isset($_POST["save"])){
 
 	//die(header("Location: test_list_accounts.php"));
 }
-
-function generateRandomString($length = 12) {
-    $characters = '0123456789';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
-
-?>
-
-<?php require(__DIR__ . "/partials/flash.php");
