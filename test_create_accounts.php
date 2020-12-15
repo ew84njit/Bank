@@ -5,6 +5,7 @@
 
 
 <script>
+/*
 $(document).ready(function () {
 	$("#actType").change(function () {
 		var selected = $("#actType option:selected").form();
@@ -21,7 +22,7 @@ $(document).ready(function () {
 	$("#actType").trigger("change");
 });
 
-
+*/
 </script>
 
 </head>
