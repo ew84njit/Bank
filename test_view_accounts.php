@@ -1,11 +1,5 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
-<?php
-if (!has_role("Admin")) {
-    //this will redirect to login and kill the rest of this script (prevent it from executing)
-    flash("You don't have permission to access this page");
-    die(header("Location: login.php"));
-}
-?>
+
 
 <?php
 //we'll put this at the top so both php block have access to it
@@ -18,7 +12,9 @@ if (isset($_GET["id"])) {
 $result = [];
 if (isset($id)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT account_number, user_id, account_type, balance FROM Accounts where id = :id");
+    $stmt = $db->prepare("SELECT account_number, user_id, account_type, balance, active
+        FROM Accounts where id = :id AND active != 0");
+    
     $r = $stmt->execute([":id" => $id]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {

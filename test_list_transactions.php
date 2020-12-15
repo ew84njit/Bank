@@ -29,7 +29,6 @@ if ($r) {
 else {
     flash("There was a problem fetching the results");
 }
-
 ?>
 
 <?php if (count($results) > 0): ?>

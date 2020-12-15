@@ -33,7 +33,7 @@ else
 if(isset($_POST["save"])){
     try{
         $deleteID = $_POST["deleteAccount"];
-        $stmt = $db->prepare("DELETE FROM Accounts WHERE id = 7");
+        $stmt = $db->prepare("DELETE FROM Accounts WHERE id = :deleteID");
         $r = $stmt->execute([":deleteID" => $deleteID]);
         echo("Deleted!");
     }
