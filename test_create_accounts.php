@@ -47,12 +47,6 @@ if (!has_role("Admin")) {
 	<label>Balance</label>
 	<input type="text" name="bal"/>
 
-	<div id="Savings">
-		<label>APY</label>
-		<input type="text" name="apy" id="savingsForm"/>
-	</div>
-	
-
 	<input type="submit" name="save" value="Create"/>
 </form>
 
@@ -80,17 +74,24 @@ if(isset($_POST["save"])){
 
 	$openDate = date('Y-m-d H:i:s');//calc
 	
+	if($accountType == "Savings"){
+		$apy = 0.03;
+	}
+	else{
+		$apy = NULL;
+	}
 	
 
-	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance) 
-		VALUES(:accountNum, :userID, :accountType, :openDate, :bal)");
+	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance, apy) 
+		VALUES(:accountNum, :userID, :accountType, :openDate, :bal, :apy)");
 
 	$r = $stmt->execute([
 		":accountNum"=>$accountNum,
 		":userID"=>$userID,
 		":accountType"=>$accountType,
 		":openDate"=>$openDate,
-		":bal"=>$bal
+		":bal"=>$bal,
+		":apy"=>$apy
 	]);
 
 	if($r){
