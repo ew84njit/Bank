@@ -57,10 +57,9 @@ if(isset($_POST["save"])){
 	
 	//TODO add proper validation/checks
 	$userID = get_user_id();
-	$accountNum = $myRandomString;
     $accountType = "Loan";
     $apy = 0.06;
-    $bal = 0 - ($_POST["loan_amount"] * (1+$apy));
+    $bal = 0 - ($_POST["amount"] * (1+$apy));
     
 	$openDate = date('Y-m-d H:i:s');//calc
 	
