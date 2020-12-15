@@ -6,7 +6,7 @@ $results = [];
 $db = getDB();
 $userID = get_user_id();
 $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-	from Accounts WHERE user_id = :userID");
+	from Accounts WHERE active != 0 AND user_id = :userID");
 $r = $stmt->execute([":userID" => $userID]);
 if ($r) 
 {
@@ -40,8 +40,5 @@ if(isset($_POST["save"])){
     else {
         flash("There was a problem deleting");
     }
-
-
-
 }
 ?>
