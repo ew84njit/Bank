@@ -50,6 +50,7 @@ if (isset($_POST["search"]) && !empty($query)) {
                 <?php safer_echo($r["last_name"]); ?>, <?php safer_echo($r["first_name"]); ?>
                 </div>
             </div>
+
         <?php endforeach; ?>
     </div>
 <?php else: ?>

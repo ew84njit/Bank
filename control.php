@@ -41,6 +41,28 @@ if (isset($_POST["search"]) && !empty($query)) {
 
 <h1>Freeze Account</h1>
 <form method="POST">
-    <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-    <input type="submit" value="Search" name="search"/>
+    <input name="query" placeholder="Disable" value="<?php safer_echo($query); ?>"/>
+    <input type="submit" value="Freeze" name="search"/>
+</form>
+
+<?php
+$query = "";
+
+if (isset($_POST["query"])) {
+    $query = $_POST["query"];
+}
+if (isset($_POST["search"]) && !empty($query)) {
+    $db = getDB();
+    $sql = $db->prepare("UPDATE BankUsers SET disabled=1 WHERE account_number=554136591337");
+    $res = $sql->execute();
+    if($res){
+        flash("Updated");
+    }
+}
+?>
+
+<h1>Disable User</h1>
+<form method="POST">
+    <input name="query" placeholder="Disable" value="<?php safer_echo($query); ?>"/>
+    <input type="submit" value="Disable" name="search"/>
 </form>
