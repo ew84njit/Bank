@@ -8,7 +8,8 @@ if (!has_role("Admin")) {
 }
 ?>
 
-<?php
+
+<?php // FREEZE ACCOUNT
 $query = "";
 
 if (isset($_POST["query"])) {
@@ -16,21 +17,8 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    /*
-    $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance, apy, active, frozen
-        from Accounts WHERE account_number=:q LIMIT 1");
-    
-    $r = $stmt->execute([":q" => "%$query%"]);
-
-    if ($r) {
-        $result = $stmt->fetch();
-    }
-    else {
-        flash("There was a problem fetching the results");
-    }
-    */
     $sql = $db->prepare("UPDATE Accounts SET frozen=1 WHERE account_number=:q");
-    $res = $sql->execute([":q" => "%$query%"]);
+    $res = $sql->execute([":q" => $query]);
     if($res){
         flash("Updated");
     }
@@ -45,7 +33,8 @@ if (isset($_POST["search"]) && !empty($query)) {
     <input type="submit" value="Freeze" name="search"/>
 </form>
 
-<?php
+
+<?php // FREEZE ACCOUNT
 $query2 = "";
 
 if (isset($_POST["query2"])) {

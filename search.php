@@ -18,7 +18,7 @@ if (isset($_POST["query"])) {
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT id, username, email, first_name, last_name
-        from BankUsers WHERE username like :q LIMIT 10");
+        from BankUsers WHERE first_name like :q OR last_name like :q LIMIT 10");
 
     $r = $stmt->execute([":q" => "%$query%"]);
 
