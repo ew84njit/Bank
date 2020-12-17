@@ -53,7 +53,7 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $sql = $db->prepare("UPDATE BankUsers SET disabled=1 WHERE account_number=554136591337");
+    $sql = $db->prepare("UPDATE BankUsers SET disabled=1 WHERE id=10");
     $res = $sql->execute();
     if($res){
         flash("Updated");
