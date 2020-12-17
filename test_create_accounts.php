@@ -1,14 +1,5 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
 
-<?php
-/*
-if (!has_role("Admin")) {
-    //this will redirect to login and kill the rest of this script (prevent it from executing)
-    flash("You don't have permission to access this page");
-    die(header("Location: login.php"));
-}
-*/
-?>
 
 <form method="POST">
 	<label>Name</label>
@@ -76,7 +67,7 @@ if(isset($_POST["save"])){
 		flash("Error creating: " . var_export($e, true));
 	}
 
-	die(header("Location: test_list_accounts.php"));
+	die(header("Location: home.php"));
 }
 
 function generateRandomString($length = 12) {
