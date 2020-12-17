@@ -31,6 +31,9 @@ if (isset($_POST["search"]) && !empty($query)) {
     */
     $sql = $db->prepare("UPDATE Accounts SET frozen=1 WHERE account_number=:q");
     $res = $sql->execute([":q" => "%$query%"]);
+    if($res){
+        flash("Updated");
+    }
 
 
 }
