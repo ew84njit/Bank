@@ -11,7 +11,7 @@
 		<option value="Savings">Savings</option>
 	</select>
 	<label>Balance</label>
-	<input type="text" name="bal"/>
+	<input type="number" name="bal"/>
 
 	<input type="submit" name="save" value="Create"/>
 </form>

@@ -1,6 +1,5 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
 
-
 <?php
 $query = "";
 $results = [];
@@ -11,6 +10,17 @@ $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_d
 $r = $stmt->execute([":userID" => $userID]);
 if ($r) {
 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+else {
+	flash("There was a problem fetching the results");
+}
+
+$results2 = [];
+$stmt2 = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
+	from Accounts WHERE frozen = 0");
+$r2 = $stmt2->execute([":userID" => $userID]);
+if ($r2) {
+	$results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 else {
 	flash("There was a problem fetching the results");
@@ -27,8 +37,8 @@ else {
 	<br></br>
 	<label for="dest">To: </label>
 	<select name="account_dest" id="dest">
-		<?php foreach ($results as $r): ?>
-			<option value=<?php echo($r["id"]);?>><?php safer_echo($r["account_number"]);?></option>
+		<?php foreach ($results2 as $r2): ?>
+			<option value=<?php echo($r2["id"]);?>><?php safer_echo($r2["account_number"]);?></option>
 		<?php endforeach; ?>
 	</select>
 	<br></br>
@@ -49,8 +59,6 @@ else {
 </form>
 
 <?php
-
-
 if(isset($_POST["save"])){
 	$db = getDB();
 	$results = [];
@@ -71,18 +79,8 @@ if(isset($_POST["save"])){
 	}
 
 	$action = $_POST["action"]; //deposit or withdraw or transfer
-	if($action == "deposit") {
-		$act_src = $world["id"];
-		$act_dest = $_POST["account_dest"];
-	}
-	else if($action == "withdraw") {
-		$act_src = $_POST["account_src"];
-		$act_dest = $world["id"];
-	} 
-	else {
-		$act_src = $_POST["account_src"];
-		$act_dest = $_POST["account_dest"];
-	}
+    $act_src = $_POST["account_src"];
+    $act_dest = $_POST["account_dest"];
 
 	$stmtB = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 		WHERE id=:act_src");
