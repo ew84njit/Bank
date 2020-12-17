@@ -47,8 +47,10 @@ if(isset($_POST["save"])){
 		$apy = NULL;
 	}
 	
-	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance, apy) 
-		VALUES(:accountNum, :userID, :accountType, :openDate, :bal, :apy)");
+	$active = 1; 
+
+	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance, apy, active) 
+		VALUES(:accountNum, :userID, :accountType, :openDate, :bal, :apy, :active)");
 
 	$r = $stmt->execute([
 		":accountNum"=>$accountNum,
@@ -56,7 +58,8 @@ if(isset($_POST["save"])){
 		":accountType"=>$accountType,
 		":openDate"=>$openDate,
 		":bal"=>$bal,
-		":apy"=>$apy
+		":apy"=>$apy,
+		":active"=>$active
 	]);
 
 	if($r){
