@@ -22,8 +22,6 @@ if (isset($_POST["search"]) && !empty($query)) {
     if($res){
         flash("Updated");
     }
-
-
 }
 ?>
 
