@@ -9,6 +9,7 @@ if (isset($_POST["register"])) {
     $confirm = null;
     $username = null;
     $private = null;
+    $disabled = 0;
 
     if (isset($_POST["email"])) {
         $email = $_POST["email"];
@@ -53,11 +54,11 @@ if (isset($_POST["register"])) {
         $db = getDB();
         if (isset($db)) {
             //here we'll use placeholders to let PDO map and sanitize our data
-            $stmt = $db->prepare("INSERT INTO BankUsers(email, first_name, last_name, username, password, private) 
-                VALUES(:email, :firstName, :lastName, :username, :password, :private)");
+            $stmt = $db->prepare("INSERT INTO BankUsers(email, first_name, last_name, username, password, private, private, disabled) 
+                VALUES(:email, :firstName, :lastName, :username, :password, :private, :disabled)");
             //here's the data map for the parameter to data
             $params = array(":email" => $email, ":firstName" => $firstName, ":lastName" => $lastName, 
-                ":username" => $username, ":password" => $hash, ":private" => $private);
+                ":username" => $username, ":password" => $hash, ":private" => $private, ":disabled" => $disabled);
             $r = $stmt->execute($params);
             //let's just see what's returned
             echo "db returned: " . var_export($r, true);
