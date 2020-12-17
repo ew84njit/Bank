@@ -91,19 +91,19 @@ if (!isset($username)) {
 
 <div class="container">
     <form method="POST">
-        <label for="email">Email:</label>
+        <label for="email">Email:</label><br></br>
         <input type="email" id="email" name="email" required value="<?php safer_echo($email); ?>"/><br></br>
-        <label for="first">First Name:</label>
+        <label for="first">First Name:</label><br></br>
         <input type="text" id="first" name="first" required /><br></br>
-        <label for="last">Last Name:</label>
+        <label for="last">Last Name:</label><br></br>
         <input type="text" id="last" name="last" required /><br></br>
-        <label for="user">Username:</label>
+        <label for="user">Username:</label><br></br>
         <input type="text" id="user" name="username" required maxlength="60" value="<?php safer_echo($username); ?>"/><br></br>
-        <label for="p1">Password:</label>
+        <label for="p1">Password:</label><br></br>
         <input type="password" id="p1" name="password" required/><br></br>
-        <label for="p2">Confirm Password:</label>
+        <label for="p2">Confirm Password:</label><br></br>
         <input type="password" id="p2" name="confirm" required/><br></br>
-        <label for="private">Private:</label>
+        <label for="private">Private:</label><br></br>
         <input type="checkbox" name="private" value="1"/><br></br>
         <input type="submit" name="register" value="Register"/>
     </form>
