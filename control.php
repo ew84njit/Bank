@@ -53,11 +53,12 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $sql = $db->prepare("UPDATE BankUsers SET disabled=1 WHERE id=10");
-    $res = $sql->execute();
+    $sql = $db->prepare("UPDATE BankUsers SET disabled=1 WHERE username=:q");
+    $res = $sql->execute([":q" => "%$query%"]);
     if($res){
         flash("Updated");
     }
+    echo($query);
 }
 ?>
 
