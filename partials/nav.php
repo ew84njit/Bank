@@ -25,14 +25,13 @@ require_once(__DIR__ . "/../lib/helpers.php");
                 <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
             <?php endif; ?>
             <?php if (has_role("Admin")): ?>
-
+                <li class="nav-item"><a class="nav-link" href="test_list_accounts.php">View Accounts</a></li>
             <?php endif; ?>
             <?php if (is_logged_in()): ?>
                 <li class="nav-item"><a class="nav-link" href="profile.php">Profile</a></li>
                 <li class="nav-item"><a class="nav-link" href="test_create_accounts.php">Create Accounts</a></li>
                 <li class="nav-item"><a class="nav-link" href="loan.php">Loans</a></li>
                 <li class="nav-item"><a class="nav-link" href="payment.php">Make Payment</a></li>
-                <li class="nav-item"><a class="nav-link" href="test_list_accounts.php">View Accounts</a></li>
                 <li class="nav-item"><a class="nav-link" href="test_create_transactions.php">Make Transactions</a></li>
                 <li class="nav-item"><a class="nav-link" href="test_list_transactions.php">View Transactions</a></li>
                 <li class="nav-item"><a class="nav-link" href="list_bank_accounts.php">Your Accounts</a></li>

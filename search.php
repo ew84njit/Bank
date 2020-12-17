@@ -40,10 +40,15 @@ if (isset($_POST["search"]) && !empty($query)) {
     <div class="list-group">
         <?php foreach ($results as $r): ?>
             <div class="list-group-item">
-                <div><p class="font-weight-bold"> User:</p><?php safer_echo($r["username"]); ?></div>
-                <div><p class="font-weight-bold"> Email:</p><?php safer_echo($r["email"]); ?></div>
+                <div><p class="font-weight-bold"> User:</p>
+                <?php safer_echo($r["username"]); ?>
+                </div>
+                <div><p class="font-weight-bold"> Email:</p>
+                <?php safer_echo($r["email"]); ?>
+                </div>
                 <div><p class="font-weight-bold"> Name:</p>
-                <?php safer_echo($r["last_name"]); ?>, <?php safer_echo($r["first_name"]); ?></div>
+                <?php safer_echo($r["last_name"]); ?>, <?php safer_echo($r["first_name"]); ?>
+                </div>
             </div>
         <?php endforeach; ?>
     </div>
