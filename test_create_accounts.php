@@ -49,7 +49,7 @@ if(isset($_POST["save"])){
 	
 	$active = 1; 
 
-	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance, apy, active) 
+	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance, apy, active, frozen) 
 		VALUES(:accountNum, :userID, :accountType, :openDate, :bal, :apy, :active, 0)");
 
 	$r = $stmt->execute([
