@@ -46,15 +46,15 @@ if (isset($_POST["search"]) && !empty($query)) {
 </form>
 
 <?php
-$query = "";
+$query2 = "";
 
-if (isset($_POST["query"])) {
-    $query = $_POST["query"];
+if (isset($_POST["query2"])) {
+    $query2 = $_POST["query2"];
 }
-if (isset($_POST["search"]) && !empty($query)) {
+if (isset($_POST["search"]) && !empty($query2)) {
     $db = getDB();
     $sql = $db->prepare("UPDATE BankUsers SET disabled=1 WHERE username=:q");
-    $res = $sql->execute([":q" => "%$query%"]);
+    $res = $sql->execute([":q" => $query2]);
     if($res){
         flash("Updated");
     }
@@ -64,6 +64,6 @@ if (isset($_POST["search"]) && !empty($query)) {
 
 <h1>Disable User</h1>
 <form method="POST">
-    <input name="query" placeholder="Disable" value="<?php safer_echo($query); ?>"/>
+    <input name="query2" placeholder="Disable" value="<?php safer_echo($query2); ?>"/>
     <input type="submit" value="Disable" name="search"/>
 </form>
