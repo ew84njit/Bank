@@ -19,7 +19,7 @@ $stmt2 = $db->prepare("SELECT id, account_number, user_id, account_type, opened_
 	from Accounts WHERE frozen = 0");
 $r2 = $stmt2->execute();
 if ($r2) {
-	$results2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 }
 else {
 	flash("There was a problem fetching the results");
@@ -34,6 +34,7 @@ else {
 		<?php endforeach; ?>
 	</select>
 	<br></br>
+
 	<label for="dest">To: </label>
 	<select name="account_dest" id="dest">
 		<?php foreach ($results2 as $r2): ?>
@@ -41,6 +42,7 @@ else {
 		<?php endforeach; ?>
 	</select>
 	<br></br>
+
 	<label>Amount</label>
 	<input type="number" name="amount" min="0.01" step="0.01"/>
 	<br></br>
