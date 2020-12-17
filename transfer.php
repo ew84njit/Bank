@@ -5,7 +5,7 @@ $results = [];
 $db = getDB();
 $userID = get_user_id();
 $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-	from Accounts WHERE user_id = :userID AND frozen = 0");
+	from Accounts WHERE user_id = :userID AND frozen = 0 AND active != 0");
 $r = $stmt->execute([":userID" => $userID]);
 if ($r) {
 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -16,7 +16,7 @@ else {
 
 $results2 = [];
 $stmt2 = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-	from Accounts WHERE frozen = 0");
+	from Accounts WHERE frozen = 0 AND active != 0");
 $r2 = $stmt2->execute();
 if ($r2) {
 	$results2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
