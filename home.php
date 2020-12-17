@@ -45,28 +45,28 @@ if (isset($_SESSION["user"]) && isset($_SESSION["user"]["email"])) {
                 <div class="card-body">
                     <h4 class="card-title">Deposit</h4>
                     <p class="card-text">Put money into your account.</p>
-                    <a href="#" role="button" class="btn btn-dark">Deposit</a>
+                    <a href="test_create_transactions.php" role="button" class="btn btn-dark">Deposit</a>
                 </div>
             </div>
             <div class="card col-sm-4 md-3">
                 <div class="card-body">
                     <h4 class="card-title">Withdraw</h4>
                     <p class="card-text">Withdraw funds from your account.</p>
-                    <a href="#" role="button" class="btn btn-dark">Withdraw</a>
+                    <a href="test_create_transactions.php" role="button" class="btn btn-dark">Withdraw</a>
                 </div>
             </div>
             <div class="card col-sm-4 md-3">
                 <div class="card-body">
                     <h4 class="card-title">Transfer</h4>
                     <p class="card-text">Move funds between accounts.</p>
-                    <a href="#" role="button" class="btn btn-dark">Transfer</a>
+                    <a href="transfer.php" role="button" class="btn btn-dark">Transfer</a>
                 </div>
             </div>
             <div class="card col-sm-4 md-3">
                 <div class="card-body">
                     <h4 class="card-title">Profile</h4>
                     <p class="card-text">View your profiile.</p>
-                    <a href="#" role="button" class="btn btn-dark">View Profile</a>
+                    <a href="profile.php" role="button" class="btn btn-dark">View Profile</a>
                 </div>
             </div>
         </div>
