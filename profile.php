@@ -120,3 +120,23 @@ if (isset($_POST["saved"])) {
     <input type="password" name="confirm"/>
     <input type="submit" name="saved" value="Save Profile"/>
 </form>
+
+<?php
+$db = getDB();
+$user = get_user_id();
+$stmt = $db->prepare("SELECT id, first_name, last_name
+    from BankUsers WHERE id = :user");
+
+$r = $stmt->execute([":user" => $user]);
+
+if ($r) {
+    $results = $stmt->fetch();
+}
+else {
+    flash("There was a problem fetching the results");
+}
+safer_echo($results["first_name"]);
+echo(" ");
+safer_echo($results["last_name"]);
+
+?>
