@@ -13,7 +13,7 @@ $results = [];
 $db = getDB();
 $userID = get_user_id();
 $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-	from Accounts WHERE user_id = :userID");
+	from Accounts WHERE user_id = :userID AND frozen = 0");
 $r = $stmt->execute([":userID" => $userID]);
 if ($r) {
 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
