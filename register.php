@@ -103,7 +103,7 @@ if (!isset($username)) {
         <input type="password" id="p1" name="password" required/><br></br>
         <label for="p2">Confirm Password:</label><br></br>
         <input type="password" id="p2" name="confirm" required/><br></br>
-        <label for="private">Private:</label><br></br>
+        <label for="private">Private:</label>
         <input type="checkbox" name="private" value="1"/><br></br>
         <input type="submit" name="register" value="Register"/>
     </form>
