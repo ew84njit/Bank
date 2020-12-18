@@ -49,8 +49,8 @@ if(isset($_POST["save"])){
     
 	$openDate = date('Y-m-d H:i:s');//calc
 	
-	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance, apy) 
-		VALUES(:accountNum, :userID, :accountType, :openDate, :bal, :apy)");
+	$stmt = $db->prepare("INSERT INTO Accounts(account_number, user_id, account_type, opened_date, balance, apy, frozen) 
+		VALUES(:accountNum, :userID, :accountType, :openDate, :bal, :apy, 0)");
 
 	$r = $stmt->execute([
 		":accountNum"=>$accountNum,
