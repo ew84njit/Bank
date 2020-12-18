@@ -84,22 +84,24 @@ if(isset($_POST["save"])){
 		$act_dest = $_POST["account_dest"];
 	}
 
-	$stmtB = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
-		WHERE id=:act_src and account_number != 000000000000");
-	$rB = $stmtB->execute([":act_src"=>$act_src]);
-	if ($rB){
-		$source = $stmtB->fetch();
-	}
-	else{
-		flash("There was a problem fetching the results");
-	}
+	if($action != "deposit" && $action != "withdraw"){
+		$stmtB = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
+			WHERE id=:act_src");
+		$rB = $stmtB->execute([":act_src"=>$act_src]);
+		if ($rB){
+			$source = $stmtB->fetch();
+		}
+		else{
+			flash("There was a problem fetching the results");
+		}
 
-	$amount = $_POST["amount"];
+		$amount = $_POST["amount"];
 
 
-	if($amount > $source["balance"]){
-		$amountValid = false;
-		flash("Amount is greater than source balance.");
+		if($amount > $source["balance"]){
+			$amountValid = false;
+			flash("Amount is greater than source balance.");
+		}
 	}
 	$memo = $_POST["memo"];
 
