@@ -155,8 +155,8 @@ if(isset($_POST["save"])){
 ?>
 
 <?php
-$sql = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-	from Accounts WHERE user_id = :userID AND account_type == :loan AND balance != 0");
+$sql = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance, active
+	from Accounts WHERE user_id = :userID AND account_type == :loan AND active != 0");
 $r = $stmt->execute([":userID" => $userID, ":loan" => $loanStr]);
 if ($r) {
 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
