@@ -8,8 +8,8 @@ $loanStr = "Loan";
 $db = getDB();
 $userID = get_user_id();
 $stmt = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
-	from Accounts WHERE user_id = :userID");
-$r = $stmt->execute([":userID" => $userID]);
+	from Accounts WHERE user_id = :userID AND account_type != :loan");
+$r = $stmt->execute([":userID" => $userID, ":loan" => $loanStr]);
 if ($r) {
 	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -153,4 +153,36 @@ if(isset($_POST["save"])){
 	//die(header("Location: test_list_accounts.php"));
 }
 ?>
+
+<?php
+$sql = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance 
+	from Accounts WHERE user_id = :userID AND account_type == :loan");
+$r = $stmt->execute([":userID" => $userID, ":loan" => $loanStr]);
+if ($r) {
+	$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+else {
+	flash("There was a problem fetching the results");
+}
+?>
+
+<?php if (count($results) > 0): ?>
+    <div class="list-group">
+        <?php foreach ($results as $r): ?>
+            <div class="list-group-item">
+                <div>
+                    <div>Number:</div>
+                    <div><?php safer_echo($r["account_number"]); ?></div>
+                </div>
+                <div>
+                    <div>Balance:</div>
+                    <div><?php safer_echo($r["balance"]); ?></div>
+                </div>
+
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <p>No results</p>
+<?php endif; ?>
 <?php require(__DIR__ . "/partials/flash.php");?>
