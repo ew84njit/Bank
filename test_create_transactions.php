@@ -85,7 +85,7 @@ if(isset($_POST["save"])){
 	}
 
 	$stmtB = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
-		WHERE id=:act_src");
+		WHERE id=:act_src and account_number != 000000000000");
 	$rB = $stmtB->execute([":act_src"=>$act_src]);
 	if ($rB){
 		$source = $stmtB->fetch();
@@ -95,7 +95,7 @@ if(isset($_POST["save"])){
 	}
 
 	$amount = $_POST["amount"];
-	echo($source["balance"]);
+
 
 	if($amount > $source["balance"]){
 		$amountValid = false;
