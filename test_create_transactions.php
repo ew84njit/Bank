@@ -85,7 +85,7 @@ if(isset($_POST["save"])){
 	}
 
 	$amount = $_POST["amount"];
-	
+
 	if($action != "deposit" && $action != "withdraw"){
 		$stmtB = $db->prepare("SELECT id, account_number, user_id, account_type, opened_date, balance from Accounts 
 			WHERE id=:act_src");
@@ -96,9 +96,6 @@ if(isset($_POST["save"])){
 		else{
 			flash("There was a problem fetching the results");
 		}
-
-		
-
 
 		if($amount > $source["balance"]){
 			$amountValid = false;
